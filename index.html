@@ -2,14 +2,19 @@
 <html>
 <head>
 	<title>Go Safely</title>
+	<link rel="stylesheet" type="text/css" href="assets/css/.reset.css">
+	<link href="https://fonts.googleapis.com/css?family=Lato|Paytone+One" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 <body>
 	<header>
 		<h1>Go Safely</h1>
 	</header>
 	<main>
-		<img src="http://fillmurray.com/600/600">
+		<img src="assets/images/mapHolder.png">
 	</main>
+
+	<!-- Right column -->
 	<aside>
 		<section class="events">
 			<h2>Events</h2>
@@ -34,14 +39,36 @@
 				</fieldset>
 				<fieldset>
 				<legend>Date</legend>
-					<input type="checkbox" name="today" value="today" checked="checked"> Today<br>
-					<input type="text" name="startDate" value="startDate"><br>
-					<input type="text" name="endDate" value="endDate"><br>
+					<input type="radio" name="dateRadio" value="today"> Today
+					<input type="radio" name="dateRadio" value="week" checked> 7 Days<br>
+					<p>OR</p>
+					<input type="text" name="startDate" value="startDate">
+					<input type="text" name="endDate" value="endDate">
 				</fieldset>
 				<input type="submit" value="Submit">
 				<input type="reset" value="Reset">
 			</form>
 		</section>
 	</aside>
+
+	<!-- footer -->
+	<footer>
+		<p>&copy; 2017 . Creators: Jillian Flook, Andrew Reese, Zachary Smith, Kyle Stoner, Dacia Yang </p>
+	</footer>
+
+
+
+
+
+	<!-- Jquery  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+
+    <!-- Personal  -->
+    <script type="text/javascript" src="assets/javascript/app.js"></script>
+    <script type="text/javascript" src="assets/javascript/logic.js"></script>
+    <script type="text/javascript" src="assets/javascript/styling.js"></script>
 </body>
 </html>
