@@ -1,25 +1,30 @@
 body{
 	font-family: 'Lato', sans-serif;
 	font-size: 14px;
+	margin: 0px;
+
 }
 
 h1, h2, h3{
 	font-family: 'Paytone One', sans-serif;
 }
 
-
+/* --------- header section styling  ------------- */
 header{
 	height: 80px;  /* this will effect the flex heigts*/
 	background-color: #054F81;
+	padding: 1%;
 }
 
+
+
+/* --------- main section styling  --------------------------------------------------- */
 main {
 	width: 72%;
 }
 
-/*set witdth so img stays within the main. temp fix until replace with real map*/
-img{
-	width: 100%;
+#mapHolder{
+	width: 100%; /*set width so img stays within main. temp fix until replace with real map*/
 }
 
 
@@ -27,18 +32,65 @@ img{
 
 aside {
 	width: 25%;
+	height: 100vh;
 	background-color: #91CED2;
 	padding: 15px;
+	overflow: scroll;
+}
+
+/*outer most events section container */
+.events{
+	margin-bottom: 15px;
+	height: 30%;
+	max-height:500px;
+	overflow: scroll; /* I dont like the scroll bc it hides the event header */
+}
+
+#addEvent{ 
+	overflow: scroll;
+}
+
+/*image rating for the event*/
+.ratedImg{
+	height: 50px; /* specify height to counter act flex span */
+	padding-right: 15px; /* prevent event name from bumping up on right */
+}
+
+/* paragraph description text for the event */
+.eventDescr{ 
+	margin: 0px;
+	margin-bottom: 5px;
 }
 
 
-/*  --------- right section styling  -------------  */
+/* h3 elements within the form */
+.formHeader{
+	display: inline-block;
+}
+
+/* submit button in the form*/
+#submitBtn {
+	padding: 5px 10px;
+	margin: 7px;
+	font-size: 14px;
+	background-color: #89A94A;
+	border-radius: 10px;
+}
+#submitBtn:hover {
+	background-color: #FBC957;
+}
+
+
+/*  --------- footer styling  -------------  */
 
 footer{
 	height: 40px;
 	background-color: #054F81;
 	text-align: center;
 }
+
+/* ------------------------ END ------------------------------------------------------------------------------------ */
+
 
 
 
@@ -54,16 +106,36 @@ body {
 
 /* ---------- Flex header  ---------------*/
 header {
-	flex: 0 0 100%;
+	flex: 0 0 98%; /* why does 100 cause horiz scroll? */
 }
 
 /* ---------- Flex main  ---------------*/
 
+
 /* ---------- Flex aside  ---------------*/
+.addEvent{
+	display: flex;
+}
+
+.ratedEvent {
+	display: flex;
+	flex-wrap: wrap;
+}
+
 
 /* ---------- Flex footer  ---------------*/
 footer {
 	flex: 0 0 100%;
 }
+
+
+/* ------------------------ END ------------------------------------------------------------------------------------ */
+
+
+
+
+
+
+/* ------------------------ Media Queries-------------------------------------------------------------------------- */
 
 
