@@ -1,3 +1,4 @@
+
 body{
 	font-family: 'Lato', sans-serif;
 	font-size: 14px;
@@ -13,7 +14,7 @@ h1, h2, h3{
 	color: #054F81;
 }
 
-/* --------- header section styling  ------------- */
+/* --------- header nav section styling  ------------- */
 header{
 	height: 80px;  /* this will effect the flex heigts*/
 	background-color: #054F81;
@@ -27,6 +28,13 @@ h1{
 	margin: 0px;
 }
 
+nav{
+	width: 100%
+}
+
+.dropdown {
+	display: inline-block;
+}
 
 
 /* --------- main section styling  --------------------------------------------------- */
@@ -36,7 +44,7 @@ h1{
 	width: 70%;
 }
 
-#mapHolder{
+#googleMap{
 	width: 100%; /*	 set width so img stays within main. temp fix until replace with real map */
 }
 
@@ -125,6 +133,21 @@ header {
 	flex: 0 0 98%; /* why does 100 cause horiz scroll? */
 }
 
+nav{
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+#navSearchBox{
+	height: 60%;
+}
+
+/* ----------- Flex nav -----------------*/
+
+
+
 /* ---------- Flex main  ---------------*/
 main {
 display: flex;
@@ -138,16 +161,13 @@ display: flex;
 }
 
 /* ---------- Flex aside  ---------------*/
-.addEvent{
-/*	display: flex;
-*/}
 
 .ratedEvent {
 	display: flex;
 	flex-wrap: wrap;
 }
 
-#navArea {
+#eventArea {
 	display: flex;
 	flex: 1;
 	flex-direction: column;
@@ -169,5 +189,4 @@ footer {
 
 
 /* ------------------------ Media Queries-------------------------------------------------------------------------- */
-
 
