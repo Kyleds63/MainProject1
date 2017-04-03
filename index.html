@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width"> <!-- important for media queries -->
+
 	<title>Go Safely</title>
 	<link rel="stylesheet" type="text/css" href="assets/css/.reset.css">
 	<link href="https://fonts.googleapis.com/css?family=Lato|Paytone+One" rel="stylesheet">
@@ -8,7 +11,7 @@
 </head>
 <body>
 	<header>
-		<h1>Go Safely</h1>
+		<h1>Know Go</h1>
 	</header>
 	
 	<main>
@@ -19,8 +22,8 @@
 
 		<!-- Right column -->
 		<aside id="navArea">
+			<h2>Events</h2>
 			<section class="events">
-				<h2>Events</h2>
 				<section id="addEvent">
 					<div class="ratedEvent">
 						<img src="http://placehold.it/50x50" alt="placehold for rating" class="ratedImg">
@@ -62,7 +65,7 @@
 		                       <option value="B">B and above</option>
 		                       <option value="C">C and above</option>
 		                       <option value="All">All</option>
-		                   </select>
+		                   </select> <br>
 						<h3 class="formHeader">Event Category:</h3>
 							<select class="ui search dropdown">
 		                       <!-- <option value="">Category</option> -->
@@ -71,9 +74,10 @@
 		                       <option value="Sports">Sports</option>
 		                       <option value="All">All</option>
 		                   </select>
-						<legend> <h3 class="formHeader">Event Date</h3> </legend> <!-- radio button may be bad UI with the textbox date -->
+						<legend> <h3 class="formHeader">Event Date:</h3> </legend> <!-- radio button may be bad UI with the textbox date -->
 							<input type="text" name="startDate" placeholder="start date MM/DD/YY">
 							<input type="text" name="endDate" placeholder="end date MM/DD/YY">
+						<br>
 						<input type="submit" value="Submit" id="submitBtn"> <!-- only change events displayed on search, not auto -->
 					</fieldset>
 				</form>

@@ -2,6 +2,8 @@ body{
 	font-family: 'Lato', sans-serif;
 	font-size: 14px;
 	margin: 0px;
+	max-width: 1300px;
+	height: 100vh;
 
 }
 
@@ -28,16 +30,14 @@ h1{
 
 
 /* --------- main section styling  --------------------------------------------------- */
-main {
-	height: 100%;
-}
 
 #mapArea{
 	background-color: #FBC957;
+	width: 70%;
 }
 
 #mapHolder{
-	width: 100%; /*set width so img stays within main. temp fix until replace with real map*/
+	width: 100%; /*	 set width so img stays within main. temp fix until replace with real map */
 }
 
 
@@ -45,21 +45,21 @@ main {
 /* --------- right section styling  ------------- */
 
 aside {
-	width: 25%;
 	background-color: #91CED2;
 	padding: 15px;
-	overflow: scroll;
+
 }
 
 /*outer most events section container */
 .events{
 	margin-bottom: 15px;
-	height:298px; /* i dont like setting the pixels bc of diff screen sizes */
-	overflow: scroll; /* I dont like the scroll bc it hides the event header */
+	height:298px;
+	overflow: scroll; 
+	overflow-x: hidden;
 }
 
 #addEvent{ 
-	/*overflow: scroll;*/
+	
 }
 
 /*image rating for the event*/
@@ -80,10 +80,14 @@ aside {
 	display: inline-block;
 }
 
+.formHeader:nth-child(3){
+	margin-bottom: 0px;
+}
+
 /* submit button in the form*/
 #submitBtn {
 	padding: 5px 10px;
-	margin: 7px;
+	margin: 17px 7px 7px 7px;
 	font-size: 14px;
 	background-color: #89A94A;
 	border-radius: 10px;
@@ -123,23 +127,20 @@ header {
 
 /* ---------- Flex main  ---------------*/
 main {
-	display: flex;
+display: flex;
 	flex-wrap: wrap;
-	justify-content: space-between;
-	align-content: center;
-
 }
 
 #mapArea {
 	display: flex;
-	flex: 3;
+	flex: 2;
 	align-items: center;
 }
 
 /* ---------- Flex aside  ---------------*/
 .addEvent{
-	display: flex;
-}
+/*	display: flex;
+*/}
 
 .ratedEvent {
 	display: flex;
@@ -147,10 +148,11 @@ main {
 }
 
 #navArea {
-	flex: 1; /* this is to keep the nav the same height as the map despite the scroll events */
 	display: flex;
+	flex: 1;
 	flex-direction: column;
 }
+
 
 
 /* ---------- Flex footer  ---------------*/
