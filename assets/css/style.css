@@ -39,6 +39,12 @@ nav{
 
 /* --------- main section styling  --------------------------------------------------- */
 
+main{
+	overflow: hidden;
+	max-height: 100%;
+}
+
+
 #mapArea{
 	background-color: #FBC957;
 	width: 70%;
@@ -61,7 +67,6 @@ aside {
 /*outer most events section container */
 .events{
 	margin-bottom: 15px;
-	height:298px;
 	overflow: scroll; 
 	overflow-x: hidden;
 }
@@ -190,8 +195,3 @@ footer {
 
 /* ------------------------ Media Queries-------------------------------------------------------------------------- */
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 89e708fdefcf15b4a8cd44fcd22001c75721e935
