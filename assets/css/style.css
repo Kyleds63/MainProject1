@@ -7,6 +7,8 @@ body{
 
 h1, h2, h3{
 	font-family: 'Paytone One', sans-serif;
+	letter-spacing: 1px;
+	color: #054F81;
 }
 
 /* --------- header section styling  ------------- */
@@ -16,11 +18,22 @@ header{
 	padding: 1%;
 }
 
+h1{
+	letter-spacing: 4px;
+	color: #fff;
+	font-size: 54px;
+	margin: 0px;
+}
+
 
 
 /* --------- main section styling  --------------------------------------------------- */
 main {
-	width: 72%;
+	height: 100%;
+}
+
+#mapArea{
+	background-color: #FBC957;
 }
 
 #mapHolder{
@@ -28,11 +41,11 @@ main {
 }
 
 
+
 /* --------- right section styling  ------------- */
 
 aside {
 	width: 25%;
-	height: 100vh;
 	background-color: #91CED2;
 	padding: 15px;
 	overflow: scroll;
@@ -41,13 +54,12 @@ aside {
 /*outer most events section container */
 .events{
 	margin-bottom: 15px;
-	height: 30%;
-	max-height:500px;
+	height:298px; /* i dont like setting the pixels bc of diff screen sizes */
 	overflow: scroll; /* I dont like the scroll bc it hides the event header */
 }
 
 #addEvent{ 
-	overflow: scroll;
+	/*overflow: scroll;*/
 }
 
 /*image rating for the event*/
@@ -110,7 +122,19 @@ header {
 }
 
 /* ---------- Flex main  ---------------*/
+main {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-content: center;
 
+}
+
+#mapArea {
+	display: flex;
+	flex: 3;
+	align-items: center;
+}
 
 /* ---------- Flex aside  ---------------*/
 .addEvent{
@@ -120,6 +144,12 @@ header {
 .ratedEvent {
 	display: flex;
 	flex-wrap: wrap;
+}
+
+#navArea {
+	flex: 1; /* this is to keep the nav the same height as the map despite the scroll events */
+	display: flex;
+	flex-direction: column;
 }
 
 
