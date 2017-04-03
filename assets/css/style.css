@@ -1,11 +1,175 @@
-header {
-	border: 1px solid black;
-	height: 150px;
+
+body{
+	font-family: 'Lato', sans-serif;
+	font-size: 14px;
+	margin: 0px;
+	max-width: 1300px;
+	height: 100vh;
+
+}
+
+h1, h2, h3{
+	font-family: 'Paytone One', sans-serif;
+	letter-spacing: 1px;
+	color: #054F81;
+}
+
+/* --------- header section styling  ------------- */
+header{
+	height: 80px;  /* this will effect the flex heigts*/
+	background-color: #054F81;
+	padding: 1%;
+}
+
+h1{
+	letter-spacing: 4px;
+	color: #fff;
+	font-size: 54px;
+	margin: 0px;
+}
+
+
+
+/* --------- main section styling  --------------------------------------------------- */
+
+#mapArea{
+	background-color: #FBC957;
+	width: 70%;
+}
+
+#googleMap{
+	width: 100%; /*	 set width so img stays within main. temp fix until replace with real map */
+}
+
+
+
+/* --------- right section styling  ------------- */
+
+aside {
+	background-color: #91CED2;
+	padding: 15px;
+
+}
+
+/*outer most events section container */
+.events{
+	margin-bottom: 15px;
+	height:298px;
+	overflow: scroll; 
+	overflow-x: hidden;
+}
+
+#addEvent{ 
+	
+}
+
+/*image rating for the event*/
+.ratedImg{
+	height: 50px; /* specify height to counter act flex span */
+	padding-right: 15px; /* prevent event name from bumping up on right */
+}
+
+/* paragraph description text for the event */
+.eventDescr{ 
+	margin: 0px;
+	margin-bottom: 5px;
+}
+
+
+/* h3 elements within the form */
+.formHeader{
+	display: inline-block;
+}
+
+.formHeader:nth-child(3){
+	margin-bottom: 0px;
+}
+
+/* submit button in the form*/
+#submitBtn {
+	padding: 5px 10px;
+	margin: 17px 7px 7px 7px;
+	font-size: 14px;
+	background-color: #89A94A;
+	border-radius: 10px;
+}
+#submitBtn:hover {
+	background-color: #FBC957;
+}
+
+
+/*  --------- footer styling  -------------  */
+
+footer{
+	height: 40px;
+	background-color: #054F81;
 	text-align: center;
 }
 
-#googleMap {
-	width: 100%;
-	height: 400px;
+/* ------------------------ END ------------------------------------------------------------------------------------ */
+
+
+
+
+
+
+
+/* ------------------------ FLEX BOX ----------------------------------------------------------------------------- */
+body {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
 }
+
+/* ---------- Flex header  ---------------*/
+header {
+	flex: 0 0 98%; /* why does 100 cause horiz scroll? */
+}
+
+/* ---------- Flex main  ---------------*/
+main {
+display: flex;
+	flex-wrap: wrap;
+}
+
+#mapArea {
+	display: flex;
+	flex: 2;
+	align-items: center;
+}
+
+/* ---------- Flex aside  ---------------*/
+.addEvent{
+/*	display: flex;
+*/}
+
+.ratedEvent {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+#navArea {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+}
+
+
+
+/* ---------- Flex footer  ---------------*/
+footer {
+	flex: 0 0 100%;
+}
+
+
+/* ------------------------ END ------------------------------------------------------------------------------------ */
+
+
+
+
+
+
+/* ------------------------ Media Queries-------------------------------------------------------------------------- */
+
+
 
