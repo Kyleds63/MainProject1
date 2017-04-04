@@ -4,19 +4,21 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width"> <!-- important for media queries -->
 
-	<title>Know Go</title>
+	<title>KnowGo</title>
 	<link rel="stylesheet" type="text/css" href="assets/css/.reset.css">
 	<link href="https://fonts.googleapis.com/css?family=Lato|Paytone+One" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 <body>
 	<header>
-		<h1>Know Go</h1>
+		<h1>Kn<span id="redCircle">o</span>wG<span id="greenCircle">o</span></h1>
+		<input type="text" name="searchBox" placeholder="Search Events" id="navSearchBox">
+
 	</header>
 	<nav>
 		<!-- ra -->
 		<div class="navItem"> <!-- do not confuse this class with the bootstrap nav-item -->
-		<h3 class="formHeader">Rating:</h3>
+		<h3 class="searchHeader">Rating:</h3>
 			<select class="ui search dropdown">                   
                <label for="A">A
                	<option value="A" id="A">A and Above</option>
@@ -34,7 +36,7 @@
         </div>
         <!-- event category -->
         <div class="navItem">
-			<h3 class="formHeader">Event Category:</h3>
+			<h3 class="searchHeader">Event Category:</h3>
 			<select class="ui search dropdown">
                <label for="music">Music
                	<option value="Music" id="music">Music</option>
@@ -52,12 +54,11 @@
         </div >
         <!-- event date -->
         <div class="navItem">
-			<h3 class="formHeader">Event Date:</h3>
+			<h3 class="searchHeader">Event Date:</h3>
 			<input type="date" name="startDate" placeholder="start date MM/DD/YYYY">
 			<input type="date" name="endDate" placeholder="end date MM/DD/YYYY">
 		</div>
 
-		<input type="text" name="searchBox" placeholder="Search Events" id="navSearchBox">
 		<input type="submit" value="Submit" id="submitBtn"> <!-- only change events displayed on search, not auto -->
 	</nav>
 	<main>

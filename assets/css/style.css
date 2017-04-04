@@ -26,10 +26,23 @@ h1{
 	color: #fff;
 	font-size: 54px;
 	margin: 0px;
+	margin-left: 3%;
 }
 
+#redCircle{
+	color: #F1592F;
+}
+
+#greenCircle{
+	color: #89A94A;
+}
+
+
+/* --------- nav section styling  ------------- */
+
 nav{
-	width: 100%
+	width: 100%;
+	padding-left: 10px;
 }
 
 .dropdown {
@@ -41,7 +54,8 @@ nav{
 
 main{
 	overflow: hidden;
-	max-height: 100%;
+	height: 100%;
+	max-height: 
 }
 
 
@@ -83,8 +97,10 @@ aside {
 
 /* paragraph description text for the event */
 .eventDescr{ 
+	border-bottom: 2px solid #fff;
 	margin: 0px;
-	margin-bottom: 5px;
+	margin-bottom: 8px;
+	padding-bottom: 8px;
 }
 
 
@@ -135,8 +151,14 @@ body {
 
 /* ---------- Flex header  ---------------*/
 header {
+	display: flex;
 	flex: 0 0 98%; /* why does 100 cause horiz scroll? */
+	justify-content: space-between;
 }
+
+
+
+/* ----------- Flex nav -----------------*/
 
 nav{
 	width: 100%;
@@ -146,11 +168,8 @@ nav{
 }
 
 #navSearchBox{
-	height: 60%;
+	align-self: flex-end;  /*adjusts the height of the search box*/
 }
-
-/* ----------- Flex nav -----------------*/
-
 
 
 /* ---------- Flex main  ---------------*/
@@ -183,8 +202,12 @@ display: flex;
 /* ---------- Flex footer  ---------------*/
 footer {
 	flex: 0 0 100%;
+	padding-top: 2%;
 }
 
+footer p {
+	margin: 0px;
+}
 
 /* ------------------------ END ------------------------------------------------------------------------------------ */
 
@@ -194,4 +217,42 @@ footer {
 
 
 /* ------------------------ Media Queries-------------------------------------------------------------------------- */
+
+@media only screen and (max-width: 768px){
+	
+	header{
+		height: initial;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+
+	main{
+		height: initial;  /*resets the height so user can scroll through events*/
+	}
+
+	#mapArea{
+		display: initial;
+		flex: 1; /*makes map extend 100%*/
+	}
+
+	.events{
+		overflow: initial; /*resets the overflow scroll from desktop*/
+	}
+
+	#eventArea{
+		flex: initial; /*resets the flex 1 set on desktop*/
+	}
+}
+
+@media only screen and (max-width: 375px){
+
+	footer{
+		padding-top: 3%;
+	}
+
+	#mapArea {
+		display: none;
+	}
+}
+
 
