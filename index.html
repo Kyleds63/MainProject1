@@ -13,29 +13,37 @@
 	<script type="text/javascript" src="http://api.eventful.com/js/api"></script>
 	<link 
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width"> <!-- important for media queries -->
+
+  <title>Know Go</title>
+  <link rel="stylesheet" type="text/css" href="assets/css/.reset.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato|Paytone+One" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 <body>
-	<header>
-		<h1>Know Go</h1>
-	</header>
-	<nav>
-		<!-- ra -->
-		<div class="navItem"> <!-- do not confuse this class with the bootstrap nav-item -->
-		<h3 class="formHeader">Rating:</h3>
-			<select class="ui search dropdown">                   
+  <header>
+    <h1>Know Go</h1>
+  </header>
+  <nav>
+    <!-- ra -->
+    <div class="navItem"> <!-- do not confuse this class with the bootstrap nav-item -->
+    <h3 class="formHeader">Rating:</h3>
+      <select class="ui search dropdown">                   
                <label for="A">A
-               	<option value="A" id="A">A and Above</option>
+                <option value="A" id="A">A and Above</option>
                </label>
                <label for="B">B
-               	<option value="B" id="B">B and above</option>
+                <option value="B" id="B">B and above</option>
                </label>
                <label for="C">C
-               	<option value="C" id="C">C and above</option>
+                <option value="C" id="C">C and above</option>
                </label>
-			   <label for="allRate">All
-               	<option value="All" id="allRate">All</option>
+         <label for="allRate">All
+                <option value="All" id="allRate">All</option>
                </label>
-           	</select> 
+            </select> 
         </div>
         <!-- event category -->
         <div class="navItem">
@@ -130,27 +138,23 @@
 	</main>
 	<!-- footer -->
 	<footer>
-	<div id="test">
-		<p> here are the results</p>
-		</div>
 		<p>&copy; 2017. Creators: Andrew Reese, Dacia Yang, Jillian Flook, Kyle Stoner, Zachary Smith.  </p>
 	</footer>
 
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
 
+  <!-- Personal  -->
+  <script type="text/javascript" src="assets/javascript/app.js"></script>
+  <script type="text/javascript" src="assets/javascript/logic.js"></script>
+  <script type="text/javascript" src="assets/javascript/styling.js"></script>
 
-	<!-- Jquery  -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <!-- Eventful -->
+  <script type="text/javascript" src="http://api.eventful.com/js/api"></script>
+  
+  <!-- Map-->
+  <script  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmH8QsBvYkYA580EnbbXmfi_l4QjR22AA&v=3"></script>
+  <script async="false" defer="false" type="text/javascript" src="assets/javascript/app.js"></script>
 
-    <!-- Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
-
-    <!-- Personal  -->
-    <script type="text/javascript" src="assets/javascript/app.js"></script>
-    <script type="text/javascript" src="assets/javascript/logic.js"></script>
-    <script type="text/javascript" src="assets/javascript/styling.js"></script>
-
-
-
-   
 </body>
 </html>
