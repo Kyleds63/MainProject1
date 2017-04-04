@@ -35,31 +35,29 @@
         <!-- event category -->
         <div class="navItem">
       <h3 class="formHeader">Event Category:</h3>
-      <select class="ui search dropdown">
-               <label for="music">Music
-                <option value="Music" id="music">Music</option>
-               </label>
-               <label for="family">Family
-                <option value="Family" id="family">Family Events</option>
-               </label>
-               <label for="sports">Sports
-                <option value="Sports" id="sports">Sports</option>
-               </label>
-               <label for="allEvent">All
-                <option value="All" id="allEvent">All</option>
-
-               </label>
+      <select class="ui search dropdown" id="queryUse">
+               
+                <option value="music" id="music">Music</option>
+               
+                <option value="family_fun_kids" id="family">Family Events</option>
+               
+           
+                <option value="sports" id="sports">Sports</option>
+              
+               
+                <option value="all" id="allEvent">All</option>
+               
            </select>
         </div >
         <!-- event date -->
         <div class="navItem">
           <h3 class="formHeader">Event Date:</h3>
-          <input type="date" name="startDate" placeholder="start date MM/DD/YYYY">
-          <input type="date" name="endDate" placeholder="end date MM/DD/YYYY">
+          <input type="date" id="startDate" name="startDate" placeholder="start date MM/DD/YYYY">
+          <input id="endDate"type="date" name="endDate" placeholder="end date MM/DD/YYYY">
         </div>
 
     <input type="text" name="searchBox" placeholder="Search Events" id="navSearchBox">
-    <input type="submit" value="Submit" id="submitBtn"> <!-- only change events displayed on search, not auto -->
+    <input type="submit" value="Submit" id="submit"> <!-- only change events displayed on search, not auto -->
   </nav>
   <main>
     <!-- map area -->
