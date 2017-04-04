@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Eventful</title>
+</head>
+Eventful API <br>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="http://api.eventful.com/js/api"></script>
+ <body>
+ <!--These are just placeholders to test the JS -->
+    <div id="placeholder"> Display Here:
+     </div>
+      <input id ="startDate" type="date" />
+      <input id ="endDate" type="date" />
+ <!--must press submit button before the create events button. -->
+          <button id="submit">Submit</button>
+      <input type="button" onclick="createEvents()" value="create events" /> <br>
+
+<!-- =============================================================== -->
+<script type="text/javascript">
+
+var query;
+var splitStart;
+var splitEnd;
+
+// need an ID in the index for query to grab from
+  query = $(".ui search dropdown").val();
+     
+//when clicking on this prototype button, we can set the date.
+$('#submit').on("click", function(){
+  //set dates from values in the calader input
+var startDate = $('#startDate').val();
+var endDate = $('#endDate').val();
+//eventful processes dates as YYYYMMDD00. Adding 00 to the end of the numbers.
+finalStart = startDate+ "00";
+finalEnd = endDate+ "00";
+//removing hyphens in the numbers generated from the calander so eventful can read them.
+splitStart = finalStart.split('-').join('');
+splitEnd = finalEnd.split('-').join('');
+});
+
+//Here we are setting up our specs to create the search.
+function createEvents(){
+
+   var Events = {
+
+      app_key: "SGJgVSbsbgT3pbP3",
+//category
+      c: query,
+//location
+      where: "Austin",
+//sort the events in order of popularity
+      sort_order: "popularity", 
+//start and end date
+    "date": splitStart + "-" + splitEnd,
+// number of items to pull up
+      page_size: 25
+
+   };
+//This is the function that does the searching
+   EVDB.API.call("/events/search", Events, function(findEvents) {
+   // console.log(findEvents); 
+//display the items on the page for testing purposes
+    for (i=0;i<findEvents.events.event.length;i++){
+       $("#placeholder").append("<br>");
+       //title of events
+       $("#placeholder").append(findEvents.events.event[i].title);
+       $("#placeholder").append("<br>");
+       //start time of events
+       $("#placeholder").append(findEvents.events.event[i].start_time);
+       $("#placeholder").append("<br>");
+       //location of events
+       $("#placeholder").append(findEvents.events.event[i].city_name);
+    }
+  });
+
+};
+
+</script>
+
+</body>
+
+</html>
+
+
