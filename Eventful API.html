@@ -9,10 +9,27 @@ Eventful API <br>
 <script type="text/javascript" src="http://api.eventful.com/js/api"></script>
  <body>
  <!--These are just placeholders to test the JS -->
-    <div id="placeholder"> Display Here:
-     </div>
+  <div id="placeholder"> Display Here:
+    </div>
       <input id ="startDate" type="date" />
       <input id ="endDate" type="date" />
+   <div class="navItem">
+      <h3 class="formHeader">Event Category:</h3>
+      <!-- added id for eventful to use -->
+      <select class="ui search dropdown" id="queryUse">
+               
+                <option value="music" id="music">Music</option>
+               
+                <option value="family_fun_kids" id="family">Family Events</option>
+               
+           
+                <option value="sports" id="sports">Sports</option>
+              
+               
+                <option value="all" id="allEvent">All</option>
+               
+           </select>
+        </div >
  <!--must press submit button before the create events button. -->
           <button id="submit">Submit</button>
       <input type="button" onclick="createEvents()" value="create events" /> <br>
@@ -25,22 +42,34 @@ var splitStart;
 var splitEnd;
 
 // need an ID in the index for query to grab from
-  query = $(".ui search dropdown").val();
-     
+
 //when clicking on this prototype button, we can set the date.
 $('#submit').on("click", function(){
+
+query = $("#queryUse :selected").attr("value");
+   
   //set dates from values in the calader input
 var startDate = $('#startDate').val();
 var endDate = $('#endDate').val();
 //eventful processes dates as YYYYMMDD00. Adding 00 to the end of the numbers.
-finalStart = startDate+ "00";
-finalEnd = endDate+ "00";
+var finalStart = startDate + "00";
+var finalEnd = endDate + "00";
 //removing hyphens in the numbers generated from the calander so eventful can read them.
 splitStart = finalStart.split('-').join('');
 splitEnd = finalEnd.split('-').join('');
 });
 
 //Here we are setting up our specs to create the search.
+
+
+//-----------------------------------------------------------------------------------//
+// To Do: 1. link query to HTML, default to music. 2.sort by as a variable, such as date?
+//
+
+
+
+
+
 function createEvents(){
 
    var Events = {

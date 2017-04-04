@@ -3,10 +3,15 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width"> <!-- important for media queries -->
-
 	<title>Know Go</title>
 	<link rel="stylesheet" type="text/css" href="assets/css/.reset.css">
 	<link href="https://fonts.googleapis.com/css?family=Lato|Paytone+One" rel="stylesheet">
+	<!-- 	jquery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script src=assets/javascript/Eventful_API.js></script>
+		<!-- eventful's API  -->
+	<script type="text/javascript" src="http://api.eventful.com/js/api"></script>
+	<link 
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 <body>
@@ -35,30 +40,32 @@
         <!-- event category -->
         <div class="navItem">
 			<h3 class="formHeader">Event Category:</h3>
-			<select class="ui search dropdown">
+			<!-- added id for eventful to use -->
+			<select class="ui search dropdown" id="queryUse">
                <label for="music">Music
-               	<option value="Music" id="music">Music</option>
+               	<option value="music" id="music">Music</option>
                </label>
                <label for="family">Family
-               	<option value="Family" id="family">Family Events</option>
+               	<option value="family_fun_kids" id="family">Family Events</option>
                </label>
                <label for="sports">Sports
-               	<option value="Sports" id="sports">Sports</option>
+               	<option value="sports" id="sports">Sports</option>
                </label>
                <label for="allEvent">All
-               	<option value="All" id="allEvent">All</option>
+               	<option value="all" id="allEvent">All</option>
                </label>
            </select>
         </div >
         <!-- event date -->
         <div class="navItem">
 			<h3 class="formHeader">Event Date:</h3>
-			<input type="date" name="startDate" placeholder="start date MM/DD/YYYY">
-			<input type="date" name="endDate" placeholder="end date MM/DD/YYYY">
+			<input type="date" id="startDate" name="startDate" placeholder="start date MM/DD/YYYY">
+			<input type="date" id ="endDate" name="endDate" placeholder="end date MM/DD/YYYY">
 		</div>
 
 		<input type="text" name="searchBox" placeholder="Search Events" id="navSearchBox">
-		<input type="submit" value="Submit" id="submitBtn"> <!-- only change events displayed on search, not auto -->
+		<!-- added ability to create events on submit button -->
+		<input type="submit" onclick="createEvents()" value="Submit" id="submitBtn"> <!-- only change events displayed on search, not auto -->
 	</nav>
 	<main>
 		<!-- map area -->
@@ -123,6 +130,9 @@
 	</main>
 	<!-- footer -->
 	<footer>
+	<div id="test">
+		<p> here are the results</p>
+		</div>
 		<p>&copy; 2017. Creators: Andrew Reese, Dacia Yang, Jillian Flook, Kyle Stoner, Zachary Smith.  </p>
 	</footer>
 
