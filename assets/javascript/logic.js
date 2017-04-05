@@ -1,18 +1,4 @@
 
-
-
-    
-  //initiate map  
-  function initMap() {
-    map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: 30.272481, lng: -97.749320},
-      zoom: 11
-    });
-    google.maps.event.addListener(map, 'click', function(event) {
-          checkForCrime(event.latLng);
-        });
-}
-
 //------------------- NEED THIS -----------------------------------
 //call checkForCrime("googlelatlng variable"); this will create
 //a circle at the latlng
@@ -316,4 +302,5 @@ $.ajax({
       placeMarker(position, color);
 
     } 
+  
   
