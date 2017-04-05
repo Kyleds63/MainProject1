@@ -1,11 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width"> <!-- important for media queries -->
-
-	<title>KnowGo</title>
-	<!-- Compiled and minified Matierialize CSS -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width"> <!-- important for media queries -->
+  <title>KnowGo</title>
+<!-- Compiled and minified Matierialize CSS -->
 <!-- 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
  -->	<!-- Google fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Lato|Paytone+One" rel="stylesheet">
@@ -46,18 +46,18 @@
         <!-- event category -->
         <div class="navItem">
 			<h3 class="searchHeader">Event Category:</h3>
-			<select class="ui search dropdown">
+			<select class="ui search dropdown" id="queryUse">
                <label for="music">Music
-               	<option value="Music" id="music">Music</option>
+               	<option value="music" id="music">Music</option>
                </label>
                <label for="family">Family
-               	<option value="Family" id="family">Family Events</option>
+               	<option value="family_fun_kids" id="family">Family Events</option>
                </label>
                <label for="sports">Sports
-               	<option value="Sports" id="sports">Sports</option>
+               	<option value="sports" id="sports">Sports</option>
                </label>
                <label for="allEvent">All
-               	<option value="All" id="allEvent">All</option>
+               	<option value="all" id="allEvent">All</option>
                </label>
            </select>
         </div >
@@ -65,96 +65,103 @@
         <!-- event date -->
         <div class="navItem">
 			<h3 class="searchHeader">Search Dates:</h3>
-			<input class="userDate" type="date" name="startDate" placeholder="start MM/DD/YYYY">
-			<input class="userDate" type="date" name="endDate" placeholder="end MM/DD/YYYY">
+			<input class="userDate" type="date" name="startDate" id="startDate" placeholder="start MM/DD/YYYY">
+			<input class="userDate" type="date" name="endDate" id="endDate" placeholder="end MM/DD/YYYY">
 		</div>
 
-		<input type="submit" value="Submit" id="submitBtn"> <!-- only change events displayed on search, not auto -->
+		<input type="submit" value="Submit" id="submit"> <!-- only change events displayed on search, not auto -->
 	</nav>
-	<main>
-		<!-- map area -->
-		<div id="mapArea">
-			<img src="assets/images/mapHolder.png" id="googleMap">
-		</div>
+  <main>
+	<!-- map area -->
+	<div id="map">
+	</div>
+  
 
-		<!-- Right column -->
-		<aside id="eventArea">
-			<h2>Events</h2>
-			<section class="events">
-				<section id="addEvent">
-					<div class="ratedEvent">
-						<img src="http://placehold.it/50x50" alt="placehold for rating" class="ratedImg">
-						<h3 class="eventHeader">Event Name 1</h3>
-						<p class="eventDescr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam magni temporibus rem natus, ab voluptatibus, debitis quisquam libero expedita</p>  
-						<!-- how do we limit the number of characters for an event discription? what do we do with the overflow text?-->
-					</div>
-					<div class="ratedEvent">
-						<img src="http://placehold.it/50x50" alt="placehold for rating" class="ratedImg">
-						<h3 class="eventHeader">Event Name 2</h3>
-						<p class="eventDescr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam magni temporibus rem natus, ab voluptatibus, debitis quisquam libero expedita</p>  
-					</div>
-					<div class="ratedEvent">
-						<img src="http://placehold.it/50x50" alt="placehold for rating" class="ratedImg">
-						<h3 class="eventHeader">Event Name 3</h3>
-						<p class="eventDescr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam magni temporibus rem natus, ab voluptatibus, debitis quisquam libero expedita</p>  
-					</div>
-					<div class="ratedEvent">
-						<img src="http://placehold.it/50x50" alt="placehold for rating" class="ratedImg">
-						<h3 class="eventHeader">Event Name 4</h3>
-						<p class="eventDescr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam magni temporibus rem natus, ab voluptatibus, debitis quisquam libero expedita</p>  
-					</div>
-					<div class="ratedEvent">
-						<img src="http://placehold.it/50x50" alt="placehold for rating" class="ratedImg">
-						<h3 class="eventHeader">Event Name 5</h3>
-						<p class="eventDescr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam magni temporibus rem natus, ab voluptatibus, debitis quisquam libero expedita</p>  
-					</div>
-					<div class="ratedEvent">
-						<img src="http://placehold.it/50x50" alt="placehold for rating" class="ratedImg">
-						<h3 class="eventHeader">Event Name 2</h3>
-						<p class="eventDescr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam magni temporibus rem natus, ab voluptatibus, debitis quisquam libero expedita</p>  
-					</div>
-					<div class="ratedEvent">
-						<img src="http://placehold.it/50x50" alt="placehold for rating" class="ratedImg">
-						<h3 class="eventHeader">Event Name 3</h3>
-						<p class="eventDescr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam magni temporibus rem natus, ab voluptatibus, debitis quisquam libero expedita</p>  
-					</div>
-					<div class="ratedEvent">
-						<img src="http://placehold.it/50x50" alt="placehold for rating" class="ratedImg">
-						<h3 class="eventHeader">Event Name 4</h3>
-						<p class="eventDescr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam magni temporibus rem natus, ab voluptatibus, debitis quisquam libero expedita</p>  
-					</div>
-					<div class="ratedEvent">
-						<img src="http://placehold.it/50x50" alt="placehold for rating" class="ratedImg">
-						<h3 class="eventHeader">Event Name 5</h3>
-						<p class="eventDescr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam magni temporibus rem natus, ab voluptatibus, debitis quisquam libero expedita</p>  
-					</div>
-				</section>
-			</section>
-		</aside>
-	</main>
-	<!-- footer -->
-	<footer>
-		<p>&copy; 2017. Creators: Andrew Reese, Dacia Yang, Jillian Flook, Kyle Stoner, Zachary Smith.  </p>
-	</footer>
+    <!-- Right column -->
+    <aside id="eventArea">
+      <h2>Events</h2>
+      <section class="events">
+        <section id="addEvent">
+          <div class="ratedEvent">
+            <img src="http://placehold.it/50x50" alt="placehold for rating" class="ratedImg">
+            <h3 class="eventHeader">Event Name 1</h3>
+            <p class="eventDescr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam magni temporibus rem natus, ab voluptatibus, debitis quisquam libero expedita</p>  
+            <!-- how do we limit the number of characters for an event discription? what do we do with the overflow text?-->
+          </div>
+          <div class="ratedEvent">
+            <img src="http://placehold.it/50x50" alt="placehold for rating" class="ratedImg">
+            <h3 class="eventHeader">Event Name 2</h3>
+            <p class="eventDescr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam magni temporibus rem natus, ab voluptatibus, debitis quisquam libero expedita</p>  
+          </div>
+          <div class="ratedEvent">
+            <img src="http://placehold.it/50x50" alt="placehold for rating" class="ratedImg">
+            <h3 class="eventHeader">Event Name 3</h3>
+            <p class="eventDescr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam magni temporibus rem natus, ab voluptatibus, debitis quisquam libero expedita</p>  
+          </div>
+          <div class="ratedEvent">
+            <img src="http://placehold.it/50x50" alt="placehold for rating" class="ratedImg">
+            <h3 class="eventHeader">Event Name 4</h3>
+            <p class="eventDescr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam magni temporibus rem natus, ab voluptatibus, debitis quisquam libero expedita</p>  
+          </div>
+          <div class="ratedEvent">
+            <img src="http://placehold.it/50x50" alt="placehold for rating" class="ratedImg">
+            <h3 class="eventHeader">Event Name 5</h3>
+            <p class="eventDescr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam magni temporibus rem natus, ab voluptatibus, debitis quisquam libero expedita</p>  
+          </div>
+          <div class="ratedEvent">
+            <img src="http://placehold.it/50x50" alt="placehold for rating" class="ratedImg">
+            <h3 class="eventHeader">Event Name 2</h3>
+            <p class="eventDescr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam magni temporibus rem natus, ab voluptatibus, debitis quisquam libero expedita</p>  
+          </div>
+          <div class="ratedEvent">
+            <img src="http://placehold.it/50x50" alt="placehold for rating" class="ratedImg">
+            <h3 class="eventHeader">Event Name 3</h3>
+            <p class="eventDescr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam magni temporibus rem natus, ab voluptatibus, debitis quisquam libero expedita</p>  
+          </div>
+          <div class="ratedEvent">
+            <img src="http://placehold.it/50x50" alt="placehold for rating" class="ratedImg">
+            <h3 class="eventHeader">Event Name 4</h3>
+            <p class="eventDescr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam magni temporibus rem natus, ab voluptatibus, debitis quisquam libero expedita</p>  
+          </div>
+          <div class="ratedEvent">
+            <img src="http://placehold.it/50x50" alt="placehold for rating" class="ratedImg">
+            <h3 class="eventHeader">Event Name 5</h3>
+            <p class="eventDescr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam magni temporibus rem natus, ab voluptatibus, debitis quisquam libero expedita</p>  
+          </div>
+        </section>
+      </section>
+    </aside>
+  </main>
+  <!-- footer -->
+  <footer>
+    <p>&copy; 2017. Creators: Andrew Reese, Dacia Yang, Jillian Flook, Kyle Stoner, Zachary Smith.  </p>
+  </footer>
 
 
 
-	<!-- Jquery  -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <!-- Jquery  -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <!-- Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
-
-  	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
 	<!-- Compiled and minified JavaScript for Materialize -->
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
+	
 
     <!-- Personal  -->
     <script type="text/javascript" src="assets/javascript/app.js"></script>
-    <script type="text/javascript" src="assets/javascript/logic.js"></script>
-    <script type="text/javascript" src="assets/javascript/styling.js"></script>
+<!--     <script type="text/javascript" src="assets/javascript/logic.js"></script>
+ -->    <script type="text/javascript" src="assets/javascript/styling.js"></script>
 
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+  
 
+  <!-- Eventful -->
+  <script type="text/javascript" src="http://api.eventful.com/js/api"></script>
+  
+  <!-- Map-->
+  <script  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmH8QsBvYkYA580EnbbXmfi_l4QjR22AA&v=3"></script>
+  
 
-   
 </body>
+
 </html>
