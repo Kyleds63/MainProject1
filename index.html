@@ -5,9 +5,14 @@
 	<meta name="viewport" content="width=device-width"> <!-- important for media queries -->
 
 	<title>KnowGo</title>
-	<link rel="stylesheet" type="text/css" href="assets/css/.reset.css">
+	<!-- Compiled and minified Matierialize CSS -->
+<!-- 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
+ -->	<!-- Google fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Lato|Paytone+One" rel="stylesheet">
+	
+	<!-- personal css -->
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
 </head>
 <body>
 	<header>
@@ -16,24 +21,28 @@
 
 	</header>
 	<nav>
-		<!-- ra -->
+		<!-- rating -->
 		<div class="navItem"> <!-- do not confuse this class with the bootstrap nav-item -->
-		<h3 class="searchHeader">Rating:</h3>
-			<select class="ui search dropdown">                   
-               <label for="A">A
-               	<option value="A" id="A">A and Above</option>
-               </label>
-               <label for="B">B
-               	<option value="B" id="B">B and above</option>
-               </label>
-               <label for="C">C
-               	<option value="C" id="C">C and above</option>
-               </label>
-			   <label for="allRate">All
-               	<option value="All" id="allRate">All</option>
-               </label>
-           	</select> 
+		<h3 class="searchHeader" id="flip">Rating:</h3> 
+           	<div class="navPanel" id="ratingPanel">                   
+              <select class="ui search dropdown">                  
+	              <label for="A">A
+	               <option value="A" id="A">A and Above</option>
+	              </label>
+	              <label for="B">B
+	               <option value="B" id="B">B and above</option>
+	              </label>
+	              <label for="C">C
+	               <option value="C" id="C">C and above</option>
+	              </label>
+	       		  <label for="allRate">All
+	               <option value="All" id="allRate">All</option>
+	              </label>
+	           </select>
+           	</div> 
+        <button id="ratingButton" class="tooltipped" data-position="bottom">?</button> 
         </div>
+
         <!-- event category -->
         <div class="navItem">
 			<h3 class="searchHeader">Event Category:</h3>
@@ -52,11 +61,12 @@
                </label>
            </select>
         </div >
+
         <!-- event date -->
         <div class="navItem">
-			<h3 class="searchHeader">Event Date:</h3>
-			<input type="date" name="startDate" placeholder="start date MM/DD/YYYY">
-			<input type="date" name="endDate" placeholder="end date MM/DD/YYYY">
+			<h3 class="searchHeader">Search Dates:</h3>
+			<input class="userDate" type="date" name="startDate" placeholder="start MM/DD/YYYY">
+			<input class="userDate" type="date" name="endDate" placeholder="end MM/DD/YYYY">
 		</div>
 
 		<input type="submit" value="Submit" id="submitBtn"> <!-- only change events displayed on search, not auto -->
@@ -134,6 +144,9 @@
 
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
+	<!-- Compiled and minified JavaScript for Materialize -->
 
     <!-- Personal  -->
     <script type="text/javascript" src="assets/javascript/app.js"></script>

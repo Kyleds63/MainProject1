@@ -14,7 +14,7 @@ h1, h2, h3{
 	color: #054F81;
 }
 
-/* --------- header nav section styling  ------------- */
+/* --------- header section styling  ------------- */
 header{
 	height: 80px;  /* this will effect the flex heigts*/
 	background-color: #054F81;
@@ -27,6 +27,16 @@ h1{
 	font-size: 54px;
 	margin: 0px;
 	margin-left: 3%;
+}
+
+#navSearchBox{
+	background: white url(../images/search.png) right center no-repeat;
+	width: 250px;
+	height: 30px;
+	font-size: 17px;
+	padding-left: 10px;
+	border-radius: 6px;
+	margin-bottom: 10px;
 }
 
 #redCircle{
@@ -45,10 +55,51 @@ nav{
 	padding-left: 10px;
 }
 
+/* selecting all dropdowns and conent in navbar */
 .dropdown {
 	display: inline-block;
+	border: 1px solid #054F81;
+	font-size: 13px;
+	padding-left: 5px;
 }
 
+.dropdown:hover, .navItem > input:hover{
+	background-color: rgba(251, 201, 87, 0.3);
+}
+
+/* selecting the calendar input boxes */
+.navItem > input {
+	border: 1px solid #054F81;
+	font-size: 13px;
+	border-radius: 6px;
+	margin-left: 5px;
+} 
+
+#ratingButton{
+	border-radius: 15px;
+	border: 1px solid #BCBCBC;
+	padding: 3px 8px;
+	font-size: 14px;
+	color: #054F81;
+}
+
+#ratingButton:hover{
+	padding: 5px 10px;
+	background-color: rgba(251, 201, 87, 0.3);
+}
+
+.hidden{
+	display: none;
+}
+
+/* positioning not working */
+#popupRatingBox{
+	position: relative; 
+   	top: 20px; 
+   	left: 20px;
+   	max-width: 300px;
+   	z-index: 1;
+}
 
 /* --------- main section styling  --------------------------------------------------- */
 
@@ -165,12 +216,17 @@ nav{
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
+	flex-wrap: wrap;
 }
 
 #navSearchBox{
 	align-self: flex-end;  /*adjusts the height of the search box*/
 }
 
+
+.searchHeader, .navPanel{
+	display: inline-block;
+}
 
 /* ---------- Flex main  ---------------*/
 main {
@@ -218,6 +274,8 @@ footer p {
 
 /* ------------------------ Media Queries-------------------------------------------------------------------------- */
 
+
+/* ----- table size ---------*/
 @media only screen and (max-width: 768px){
 	
 	header{
@@ -244,7 +302,13 @@ footer p {
 	}
 }
 
+
+/* ------- medium phone ----------- */
 @media only screen and (max-width: 375px){
+
+	nav{
+		justify-content: flex-start;
+	}
 
 	footer{
 		padding-top: 3%;
@@ -254,5 +318,99 @@ footer p {
 		display: none;
 	}
 }
+
+
+
+/* -------- ALL TOAST ---------------*/
+
+.z-depth-1, nav, .card-panel, .card, .toast, .btn, .btn-large, .btn-floating, .dropdown-content, .collapsible, .side-nav {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+}
+
+#toast-container {
+  display: block;
+  position: fixed;
+  z-index: 10000;
+}
+
+@media only screen and (max-width: 600px) {
+  #toast-container {
+    min-width: 100%;
+    bottom: 0%;
+  }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 992px) {
+  #toast-container {
+    left: 5%;
+    bottom: 7%;
+    max-width: 90%;
+  }
+}
+
+@media only screen and (min-width: 993px) {
+  #toast-container {
+    top: 10%;
+    right: 7%;
+    max-width: 86%;
+  }
+}
+
+.toast {
+  border-radius: 2px;
+  top: 35px;
+  width: 350px;
+  clear: both;
+  margin-top: 10px;
+  position: relative;
+  max-width: 100%;
+  height: auto;
+  min-height: 48px;
+  line-height: 1.5em;
+  word-break: break-all;
+  background-color: #fff;
+  padding: 10px 25px;
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: black;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.toast .btn, .toast .btn-large, .toast .btn-flat {
+  margin: 0;
+  margin-left: 3rem;
+}
+
+.toast.rounded {
+  border-radius: 24px;
+}
+
+@media only screen and (max-width: 600px) {
+  .toast {
+    width: 100%;
+    border-radius: 0;
+  }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 992px) {
+  .toast {
+    float: left;
+  }
+}
+
+@media only screen and (min-width: 993px) {
+  .toast {
+    float: right;
+  }
+}
+
 
 
