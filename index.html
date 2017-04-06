@@ -4,72 +4,83 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width"> <!-- important for media queries -->
+  <title>KnowGo</title>
+<!-- Compiled and minified Matierialize CSS -->
+<!-- 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
+ -->	<!-- Google fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Lato|Paytone+One" rel="stylesheet">
+	
+	<!-- personal css -->
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
-  <title>Know Go</title>
-  <link rel="stylesheet" type="text/css" href="assets/css/.reset.css">
-  <link href="https://fonts.googleapis.com/css?family=Lato|Paytone+One" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 <body>
-  <header>
-    <h1>Know Go</h1>
-  </header>
-  <nav>
-    <!-- ra -->
-    <div class="navItem"> <!-- do not confuse this class with the bootstrap nav-item -->
-    <h3 class="formHeader">Rating:</h3>
-      <select class="ui search dropdown">                   
-               <label for="A">A
-                <option value="A" id="A">A and Above</option>
-               </label>
-               <label for="B">B
-                <option value="B" id="B">B and above</option>
-               </label>
-               <label for="C">C
-                <option value="C" id="C">C and above</option>
-               </label>
-         <label for="allRate">All
-                <option value="All" id="allRate">All</option>
-               </label>
-            </select> 
-        </div>
-        <!-- event category -->
-        <div class="navItem">
-      <h3 class="formHeader">Event Category:</h3>
-      <select class="ui search dropdown" id="queryUse">
-               
-                <option value="music" id="music">Music</option>
-               
-                <option value="family_fun_kids" id="family">Family Events</option>
-               
-           
-                <option value="sports" id="sports">Sports</option>
-              
-               
-                <option value="all" id="allEvent">All</option>
-               
-           </select>
-        </div >
-        <!-- event date -->
-        <div class="navItem">
-          <h3 class="formHeader">Event Date:</h3>
-          <input type="date" id="startDate" name="startDate" placeholder="start date MM/DD/YYYY">
-          <input id="endDate"type="date" name="endDate" placeholder="end date MM/DD/YYYY">
+	<header>
+		<h1>Kn<span id="redCircle">o</span>wG<span id="greenCircle">o</span></h1>
+		<input type="text" name="searchBox" placeholder="Search Events" id="navSearchBox">
+
+	</header>
+	<nav>
+		<!-- rating -->
+		<div class="navItem"> <!-- do not confuse this class with the bootstrap nav-item -->
+		<h3 class="searchHeader" id="flip">Rating:</h3> 
+           	<div class="navPanel" id="ratingPanel">                   
+              <select class="ui search dropdown">                  
+	              <label for="A">A
+	               <option value="A" id="A">A and Above</option>
+	              </label>
+	              <label for="B">B
+	               <option value="B" id="B">B and above</option>
+	              </label>
+	              <label for="C">C
+	               <option value="C" id="C">C and above</option>
+	              </label>
+	       		  <label for="allRate">All
+	               <option value="All" id="allRate">All</option>
+	              </label>
+	           </select>
+           	</div> 
+        <button id="ratingButton" class="tooltipped" data-position="bottom">?</button> 
         </div>
 
-    <input type="text" name="searchBox" placeholder="Search Events" id="navSearchBox">
-    <input type="submit" value="Submit" id="submit"> <!-- only change events displayed on search, not auto -->
-  </nav>
+        <!-- event category -->
+        <div class="navItem">
+			<h3 class="searchHeader">Event Category:</h3>
+			<select class="ui search dropdown" id="queryUse">
+               <label for="music">Music
+               	<option value="music" id="music">Music</option>
+               </label>
+               <label for="family">Family
+               	<option value="family_fun_kids" id="family">Family Events</option>
+               </label>
+               <label for="sports">Sports
+               	<option value="sports" id="sports">Sports</option>
+               </label>
+               <label for="allEvent">All
+               	<option value="all" id="allEvent">All</option>
+               </label>
+           </select>
+        </div >
+
+        <!-- event date -->
+        <div class="navItem">
+			<h3 class="searchHeader">Search Dates:</h3>
+			<input class="userDate" type="date" name="startDate" id="startDate" placeholder="start MM/DD/YYYY">
+			<input class="userDate" type="date" name="endDate" id="endDate" placeholder="end MM/DD/YYYY">
+		</div>
+
+		<input type="submit" value="Submit" id="submit"> <!-- only change events displayed on search, not auto -->
+	</nav>
   <main>
-    <!-- map area -->
-    <div id="map"></div>
+	<!-- map area -->
+	<div id="map">
+	</div>
 
     <!-- Right column -->
     <aside id="eventArea">
       <h2>Events</h2>
       <section class="events">
         <section id="addEvent">
-          
         </section>
       </section>
     </aside>
@@ -84,13 +95,17 @@
   <!-- Jquery  -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+	<!-- Compiled and minified JavaScript for Materialize -->
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
+	
+
+    <!-- Personal  -->
+    <script type="text/javascript" src="assets/javascript/app.js"></script>
+<!--     <script type="text/javascript" src="assets/javascript/logic.js"></script>
+ -->    <script type="text/javascript" src="assets/javascript/styling.js"></script>
+
   <!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
-
-  <!-- Personal  -->
-  <script type="text/javascript" src="assets/javascript/styling.js"></script>
-  <script type="text/javascript" src="assets/javascript/app.js"></script>
-  <!-- <script type="text/javascript" src="assets/javascript/logic.js"></script> -->
   
 
   <!-- Eventful -->
