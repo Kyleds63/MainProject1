@@ -1,20 +1,29 @@
-
 $(document).ready(function(){
-
-
+var eventResultList = [];
 var eventData;
 var query;
-// var locations={
-//   title:[],
-//   latitude:[],
-//   longitude:[]
-// };
 var splitStart;
 var splitEnd;
 var search;
 var map;
 var markers =[];
+var circle;
 initMap();
+
+function event(num,id,latlng,image,starttime,title,venuename,venueaddress,url,venueurl,description,cityname){
+  this.num = num;
+  this.id = id;
+  this.latlng = latlng;
+  this.image = image;
+  this.starttime = starttime;
+  this.title = title;
+  this.venuename = venuename;
+  this.venueaddress = venueaddress;
+  this.url = url;
+  this.venueurl = venueurl;
+  this.description = description;
+  this.cityname = cityname;
+}
 
 function initMap(){
   //Constructor creates a new map - only center and zoom are required.
@@ -23,10 +32,30 @@ function initMap(){
     zoom: 12
   });
  }
+ defaultEvents();
+function defaultEvents(){
+  query = "all";
+  search = $("#navSearchBox").val().trim();
+
+  //set dates from values in the calader input
+  var startDate = $('#startDate').val();
+  var endDate = $('#endDate').val();
+  //eventful processes dates as YYYYMMDD00. Adding 00 to the end of the numbers.
+  var finalStart = startDate + "00";
+  var finalEnd = endDate + "00";
+  //removing hyphens in the numbers generated from the calander so eventful can read them.
+  splitStart = finalStart.split('-').join('');
+  splitEnd = finalEnd.split('-').join('');
+  createEvents();
+}
 
 
 
-// need an ID in the index for query to grab from
+
+
+
+
+
 
 //when clicking on this prototype button, we can set the date.
 $('#submit').on("click", function(){
@@ -43,7 +72,6 @@ $('#submit').on("click", function(){
   //removing hyphens in the numbers generated from the calander so eventful can read them.
   splitStart = finalStart.split('-').join('');
   splitEnd = finalEnd.split('-').join('');
-  console.log("wtf2");
   createEvents();
   });
 
@@ -54,63 +82,142 @@ $('#submit').on("click", function(){
 // To Do: 1. link query to HTML, default to music. 2.sort by as a variable, such as date?
 //
 
-
 function createEvents(){
-  console.log("wtf");
+
+  eventResultList = [];
+
   var Events = {
-
-  app_key: "SGJgVSbsbgT3pbP3",
-
-  q: search,
-  
-  // Category
-  c: query,
-  
-  // Location
-  location: ("30.307182, -97.755996"),
-  within: 15,
-  
-  // Sort the events in order of popularity
-  sort_order: "popularity",
-  
-  // Start and End Date
-  "date": splitStart + "-" + splitEnd,
-
-  // Number of Items to Pull Up
-  page_size: 100
+    app_key: "SGJgVSbsbgT3pbP3",
+    q: search,
+    c: query,                             // Category
+    location: ("30.307182, -97.755996"),  // Location
+    within: 15,
+    sort_order: "popularity",             // Sort the events in order of popularity
+    "date": splitStart + "-" + splitEnd,  // Start and End Date
+    page_size: 30                        // Number of Items to Pull Up
   };
 
   // This function does the searching
   EVDB.API.call("/events/search", Events, function(findEvents) {
     console.log(findEvents);
+     var eventImage;
      
-     
-    //Display the items on the page for testing purposes
-       console.log(findEvents.events.event.length);
+       //Display the items on the page for testing purposes
+       
        for (j=0;j<findEvents.events.event.length;j++){
-        console.log("test " + j);
-       $("#placeholder").append("<br>");
-       //title of events
-       $("#placeholder").append(findEvents.events.event[j].title);
-       $("#placeholder").append("<br>");
-       //start time of events
-       $("#placeholder").append(findEvents.events.event[j].start_time);
-       $("#placeholder").append("<br>");
-       //location of events
-       $("#placeholder").append(findEvents.events.event[j].city_name);
- 
-      var myLatlng = new google.maps.LatLng(findEvents.events.event[j].latitude,findEvents.events.event[j].longitude);
-      checkForCrime(myLatlng);
-      console.log('hey number '+ j);
 
-      var marker = new google.maps.Marker({
-      position: myLatlng,
-      title: "hey"
-      });
-    marker.setMap(map);
+        //console.log(j);
+
+        var myLatlng = new google.maps.LatLng(findEvents.events.event[j].latitude,findEvents.events.event[j].longitude);
+
+        if(findEvents.events.event[j].image != null){
+          eventImage = findEvents.events.event[j].image.medium.url;
+        }else{
+          eventImage = "assets/images/imgDefault.png";
+        }
+
+
+
+
+
+        var obj = new event(
+          j,
+          findEvents.events.event[j].id,
+          myLatlng,
+          eventImage,
+          findEvents.events.event[j].start_time,
+          findEvents.events.event[j].title,
+          findEvents.events.event[j].venue_name,
+          findEvents.events.event[j].venue_address,
+          findEvents.events.event[j].url,
+          findEvents.events.event[j].venue_url,
+          findEvents.events.event[j].description,
+          findEvents.events.event[j].city_name);
+
+        eventResultList.push(obj);
+
+
+
+        //console.log("test " + j);
+       // $("#placeholder").append("<br>");
+       // //title of events
+       // $("#placeholder").append(findEvents.events.event[j].title);
+       // $("#placeholder").append("<br>");
+       // //start time of events
+       // $("#placeholder").append(findEvents.events.event[j].start_time);
+       // $("#placeholder").append("<br>");
+       // //location of events
+       // $("#placeholder").append(findEvents.events.event[j].city_name);
+ 
+      
+      
+      
+    //   var marker = new google.maps.Marker
+    //   ({
+    //   position: myLatlng,
+    //   title: "hey"
+    //   });
+    // marker.setMap(map);
+    populateResuts();
+    
     } 
   });
+
+  function populateResuts(){
+
+    $("#addEvent").empty();
+
+    for(i=0;i<eventResultList.length;i++){
+
+    var newDiv = $("<div>");
+    newDiv.addClass("eventItem");
+    newDiv.attr("data-id",eventResultList[i].id);
+    newDiv.attr("id", i);
+
+    newDiv.append("<img src="+eventResultList[i].image+" alt=\"placehold for rating\" class=\"ratedImg\">");
+    newDiv.append("<h3 class=\"eventHeader\">"+eventResultList[i].title+"</h3>");
+    newDiv.append("<p class=\"eventDescr\">"+eventResultList[i].starttime+"</p>");
+    $("#addEvent").append(newDiv);
+
+    }
+ $(".eventItem").on("click",function(){
+    deleteMarkers();
+    map.setCenter(eval("eventResultList["+ this.id +"].latlng"));
+    console.log("hey");
+    console.log(eval("eventResultList["+ this.id +"]"));
+    //eventResultList[i].latlng;
+
+    var marker = new google.maps.Marker({
+      position: eval("eventResultList["+ this.id +"].latlng"),
+      title: eval("eventResultList["+ this.id +"].title"),
+      map: map
+    });
+    markers.push(marker);
+    checkForCrime(eval("eventResultList["+ this.id +"].latlng"));
+  })
+
+
+  }
+
+
+
+
+
+
+
+  console.log(eventResultList);
 }
+function deleteMarkers() {
+        try{
+          circle.setMap(null);
+        }catch(err){
+          console.log(err);
+        }
+        for(i=0;i<markers.length;i++){
+          markers[i].setMap(null);
+        }
+
+      }
 
 //------------------------------------------------------
 //     Zachs crime circle code 
@@ -143,8 +250,8 @@ $.ajax({
 
   //place a cirle on map with calculated location and color
   function placeMarker(location, color) {
-    console.log(color);
-      var circle = new google.maps.Circle({
+    
+      circle = new google.maps.Circle({
         strokeColor: color,
         strokeOpacity: 0.3,
         strokeWeight: 0,
@@ -227,6 +334,7 @@ $.ajax({
       // markerD.setMap(map);
 
       //loop to test crime data
+
       for(i=0;i< crimeData.length;i++){
 
         //check is default false
@@ -400,7 +508,7 @@ $.ajax({
       // console.log("latitude: " + lat);  
 
       //log crime count
-      console.log("this much crime: " + countCrime);
+      //console.log("this much crime: " + countCrime);
 
       //default cirle color
       color = '#89ae4f';
@@ -424,11 +532,3 @@ $.ajax({
 
 })
 
-
-
-
-
-
-
- 
-  

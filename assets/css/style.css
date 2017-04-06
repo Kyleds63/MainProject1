@@ -58,7 +58,11 @@ main{
 
 
 /* --------- right section styling  ------------- */
-
+.eventItem{
+	border: solid #fff 2px;
+	padding: 20px;
+	margin-bottom: 5px;
+}
 aside {
 	background-color: #91CED2;
 	padding: 15px;
