@@ -21,3 +21,6 @@ $("#ratingButton").click(function(){
   	Materialize.toast('Ratings are calculated by the severity and number of crimes committed in one square mile of the event location. Regions outside of Austin and/or with out current crime data are labeled as &ldquo;NR&rdquo; or &ldquo;not rated&rdquo;.', 4000); // 4000 is the duration of the toast
 })
 
+$("document").resize(function(){
+	google.maps.event.trigger(map, "resize");
+});

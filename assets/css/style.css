@@ -1,4 +1,5 @@
 
+
 body{
 	font-family: 'Lato', sans-serif;
 	font-size: 14px;
@@ -106,17 +107,13 @@ nav{
 main{
 	overflow: hidden;
 	height: 100%;
-	max-height: 
-}
-
-
-#mapArea{
+	width: 100%;
 	background-color: #FBC957;
-	width: 70%;
 }
 
-#googleMap{
-	width: 100%; /*	 set width so img stays within main. temp fix until replace with real map */
+
+#map{
+	width: 70%;
 }
 
 
@@ -165,14 +162,14 @@ aside {
 }
 
 /* submit button in the form*/
-#submitBtn {
+#submit {
 	padding: 5px 10px;
 	margin: 17px 7px 7px 7px;
 	font-size: 14px;
 	background-color: #89A94A;
 	border-radius: 10px;
 }
-#submitBtn:hover {
+#submit:hover {
 	background-color: #FBC957;
 }
 
@@ -234,11 +231,11 @@ display: flex;
 	flex-wrap: wrap;
 }
 
-#mapArea {
+/*#map{
 	display: flex;
 	flex: 2;
 	align-items: center;
-}
+}*/
 
 /* ---------- Flex aside  ---------------*/
 
@@ -288,13 +285,17 @@ footer p {
 		height: initial;  /*resets the height so user can scroll through events*/
 	}
 
-	#mapArea{
-		display: initial;
-		flex: 1; /*makes map extend 100%*/
-	}
+	#map{
+		display: block;
+		overflow: auto;
+		width: 90%; /*makes map extend 100% */
+		margin: auto;
+		height: 400px;
+	} 
 
 	.events{
-		overflow: initial; /*resets the overflow scroll from desktop*/
+		/*overflow: initial;*/ /*resets the overflow scroll from desktop*/
+		max-height: 470px; /*keeps user scroll active with lots of event content*/
 	}
 
 	#eventArea{
@@ -314,7 +315,7 @@ footer p {
 		padding-top: 3%;
 	}
 
-	#mapArea {
+	#map {
 		display: none;
 	}
 }
