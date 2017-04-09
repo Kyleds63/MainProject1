@@ -19,15 +19,15 @@ h1, h2, h3{
 header{
 	height: 80px;  /* this will effect the flex heigts*/
 	background-color: #054F81;
-	padding: 1%;
+	padding: 2%;
 }
 
 h1{
 	letter-spacing: 4px;
 	color: #fff;
 	font-size: 54px;
-	margin: 0px;
-	margin-left: 3%;
+	margin: 0 2% 0 3%;
+
 }
 
 #navSearchBox{
@@ -54,6 +54,8 @@ h1{
 nav{
 	width: 100%;
 	padding-left: 10px;
+	border-top: 2px solid rgba(128, 128, 128, 0.59);
+	border-bottom: 2px solid rgba(128, 128, 128, 0.59);
 }
 
 /* selecting all dropdowns and conent in navbar */
@@ -119,16 +121,19 @@ main{
 
 
 /* --------- right section styling  ------------- */
-.eventItem{
-	border: solid #fff 2px;
-	padding: 20px;
-	margin-bottom: 5px;
-}
+
 aside {
 	background-color: #91CED2;
 	padding: 15px;
-
 }
+
+
+/* Main 'events' header with bottom fader border*/
+aside > h2 {
+	box-shadow: 0 4px 3px -3px #45A4AA;  /*to create bottom line, set the 4th value as a negative of the third*/
+	padding-left: 21px; /*inline with the events thumbnails*/
+}
+
 
 /*outer most events section container */
 .events{
@@ -137,9 +142,13 @@ aside {
 	overflow-x: hidden;
 }
 
-#addEvent{ 
-	
+/* individual event containers */
+.eventItem{
+	border: solid #fff 2px;
+	padding: 15px;
+	margin-bottom: 5px;
 }
+
 
 /*image rating for the event*/
 .ratedImg{
@@ -147,12 +156,18 @@ aside {
 	padding-right: 15px; /* prevent event name from bumping up on right */
 }
 
+
+.eventHeader{
+	padding-right: 14px; /* needed with the tablet and phone media query*/
+	margin: 0px;
+	margin-top: 0.5em;
+
+}
+
 /* paragraph description text for the event */
 .eventDescr{ 
-	border-bottom: 2px solid #fff;
 	margin: 0px;
-	margin-bottom: 8px;
-	padding-bottom: 8px;
+	margin-top: 0.5em; /*relevant on the tablet & phone sizes*/
 }
 
 
@@ -204,7 +219,7 @@ body {
 /* ---------- Flex header  ---------------*/
 header {
 	display: flex;
-	flex: 0 0 98%; /* why does 100 cause horiz scroll? */
+	flex: 0 0 96%; /* why does 100 cause horiz scroll? */
 	justify-content: space-between;
 }
 
@@ -252,6 +267,13 @@ display: flex;
 	display: flex;
 	flex: 1;
 	flex-direction: column;
+}
+
+.eventItem{
+	display: flex;
+	flex-wrap: wrap;
+	align-content: center;
+	align-items: baseline;
 }
 
 
@@ -328,9 +350,6 @@ footer p {
 
 /* -------- ALL TOAST ---------------*/
 
-.z-depth-1, nav, .card-panel, .card, .toast, .btn, .btn-large, .btn-floating, .dropdown-content, .collapsible, .side-nav {
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
-}
 
 #toast-container {
   display: block;
@@ -340,41 +359,48 @@ footer p {
 
 @media only screen and (max-width: 600px) {
   #toast-container {
-    min-width: 100%;
-    bottom: 0%;
+    top: 27%;
+    max-width: 80%;
+    left: 5%;
   }
 }
 
 @media only screen and (min-width: 601px) and (max-width: 992px) {
   #toast-container {
-    left: 5%;
-    bottom: 7%;
+    top: 30%;
+    left: 20%;
     max-width: 90%;
   }
 }
 
 @media only screen and (min-width: 993px) {
   #toast-container {
-    top: 10%;
-    right: 7%;
+    top: 30%;
+    left: 25%;
     max-width: 86%;
   }
 }
 
 .toast {
+  background-image: url("../images/closeBtn.png"); /*close button icon set as background*/
+  background-size: 35px;
+  background-position: right top; /*Positioning*/
+  background-repeat: no-repeat; /*Prevent showing multiple background images*/
+  padding: 10px 30px 10px 20px; /*Preven overlap with the close icon*/
   border-radius: 2px;
   top: 35px;
   width: 350px;
   clear: both;
   margin-top: 10px;
   position: relative;
-  max-width: 100%;
+  max-width: 90%;
   height: auto;
   min-height: 48px;
   line-height: 1.5em;
-  word-break: break-all;
+  /*word-break: break-all;  this is the original format but chops up words on the end*/
+  -ms-word-wrap: break-word;
+  word-wrap: break-word;  /* line 378 and 377 are to make sure words wrap and/or have appropriate dash breaks*/
   background-color: #fff;
-  padding: 10px 25px;
   font-size: 1.1rem;
   font-weight: 300;
   color: black;
@@ -382,11 +408,11 @@ footer p {
   display: -ms-flexbox;
   display: flex;
   -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-justify-content: space-between;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 }
 
 .toast .btn, .toast .btn-large, .toast .btn-flat {

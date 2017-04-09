@@ -163,6 +163,7 @@ function createEvents(){
     } 
   });
 
+  // appending event results to the aside 
   function populateResuts(){
 
     $("#addEvent").empty();
@@ -176,7 +177,7 @@ function createEvents(){
 
     newDiv.append("<img src="+eventResultList[i].image+" alt=\"placehold for rating\" class=\"ratedImg\">");
     newDiv.append("<h3 class=\"eventHeader\">"+eventResultList[i].title+"</h3>");
-    newDiv.append("<p class=\"eventDescr\">"+eventResultList[i].starttime+"</p>");
+    newDiv.append("<p class=\"eventDescr\">"+moment(eventResultList[i].starttime).format("LLL")+"</p>");
     $("#addEvent").append(newDiv);
 
     }
@@ -197,7 +198,7 @@ function createEvents(){
   })
 
 
-  }
+  } //end of populateResults function
 
 
 
