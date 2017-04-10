@@ -48,7 +48,7 @@ function initMap(){
 function defaultEvents(){
   query = "music";
   search = $("#navSearchBox").val().trim();
-  ratingIn = "ALL";
+  ratingIn = "C";
   //set dates from values in the calader input
   var startDate = $('#startDate').val();
   var endDate = $('#endDate').val();
@@ -99,7 +99,7 @@ function createEvents(){
     within: 15,
     sort_order: "popularity",             // Sort the events in order of popularity
     "date": splitStart + "-" + splitEnd,  // Start and End Date
-    page_size: 10                         // Number of Items to Pull Up
+    page_size: 50                         // Number of Items to Pull Up
   };
 
   // This function does the searching
@@ -186,12 +186,7 @@ function createEvents(){
           i--;
         }
       }else if(ratingIn === "B"){
-        if(eventResultList[i].rating != ratingIn){
-          eventResultList.splice(i,1);
-          i--;
-        }
-      }else if(ratingIn === "C"){
-        if(eventResultList[i].rating != ratingIn){
+        if(eventResultList[i].rating === "C"){
           eventResultList.splice(i,1);
           i--;
         }
