@@ -1,4 +1,5 @@
 $(document).ready(function(){
+var ratingIn;
 var eventResultList = [];
 var eventData;
 var query;
@@ -8,9 +9,18 @@ var search;
 var map;
 var markers =[];
 var circle;
+var testicon = {
+  url: "assets/images/iconGreen.png",
+  size: new google.maps.Size(71, 71),
+  origin: new google.maps.Point(0, 0),
+  anchor: new google.maps.Point(17, 34),
+  scaledSize: new google.maps.Size(25, 35)
+};
 initMap();
 
-function event(num,id,latlng,image,starttime,title,venuename,venueaddress,url,venueurl,description,cityname){
+$("#addEvent").html("<img src = 'assets/images/gps.svg'\"></img>");
+
+function event(num,id,latlng,image,starttime,title,venuename,venueaddress,url,venueurl,description,cityname,rating){
   this.num = num;
   this.id = id;
   this.latlng = latlng;
@@ -23,6 +33,7 @@ function event(num,id,latlng,image,starttime,title,venuename,venueaddress,url,ve
   this.venueurl = venueurl;
   this.description = description;
   this.cityname = cityname;
+  this.rating = rating;
 }
 
 function initMap(){
@@ -33,10 +44,11 @@ function initMap(){
   });
  }
  defaultEvents();
-function defaultEvents(){
-  query = "all";
-  search = $("#navSearchBox").val().trim();
 
+function defaultEvents(){
+  query = "music";
+  search = $("#navSearchBox").val().trim();
+  ratingIn = "ALL";
   //set dates from values in the calader input
   var startDate = $('#startDate').val();
   var endDate = $('#endDate').val();
@@ -50,19 +62,12 @@ function defaultEvents(){
 }
 
 
-
-
-
-
-
-
-
 //when clicking on this prototype button, we can set the date.
 $('#submit').on("click", function(){
-
+  $("#addEvent").html("<img src = 'assets/images/gps.svg'\"></img>");
   query = $("#queryUse :selected").attr("value");
   search = $("#navSearchBox").val().trim();
-
+  ratingIn = $("#ratingSelect :selected").attr("value");
   //set dates from values in the calader input
   var startDate = $('#startDate').val();
   var endDate = $('#endDate').val();
@@ -94,7 +99,7 @@ function createEvents(){
     within: 15,
     sort_order: "popularity",             // Sort the events in order of popularity
     "date": splitStart + "-" + splitEnd,  // Start and End Date
-    page_size: 30                        // Number of Items to Pull Up
+    page_size: 10                         // Number of Items to Pull Up
   };
 
   // This function does the searching
@@ -103,7 +108,7 @@ function createEvents(){
      var eventImage;
      
        //Display the items on the page for testing purposes
-       
+       if(findEvents.events != null){
        for (j=0;j<findEvents.events.event.length;j++){
 
         //console.log(j);
@@ -132,9 +137,13 @@ function createEvents(){
           findEvents.events.event[j].url,
           findEvents.events.event[j].venue_url,
           findEvents.events.event[j].description,
-          findEvents.events.event[j].city_name);
+          findEvents.events.event[j].city_name,
+          "A");
 
+        
+        
         eventResultList.push(obj);
+        checkForCrime(eval("eventResultList["+ j +"].latlng"),j);
 
 
 
@@ -158,12 +167,47 @@ function createEvents(){
     //   title: "hey"
     //   });
     // marker.setMap(map);
-    populateResuts();
+    
     
     } 
+   
+  }else{
+    var newDiv = $("<div>");
+    newDiv.addClass("eventItem");
+    newDiv.html("<h2>No Event Found<h2>");
+    $("#addEvent").html(newDiv);
+  }
+    for(i=0; i<eventResultList.length;i++){
+      //console.log(ratingIn);
+      if (ratingIn === "A"){
+        if(eventResultList[i].rating != ratingIn){
+          //console.log();
+          eventResultList.splice(i,1);
+          i--;
+        }
+      }else if(ratingIn === "B"){
+        if(eventResultList[i].rating != ratingIn){
+          eventResultList.splice(i,1);
+          i--;
+        }
+      }else if(ratingIn === "C"){
+        if(eventResultList[i].rating != ratingIn){
+          eventResultList.splice(i,1);
+          i--;
+        }
+      }
+    }
+    if(findEvents.events != null){
+    populateResuts();
+  }
+    console.log(eventResultList);
+
+
+
+
+    
   });
 
-  // appending event results to the aside 
   function populateResuts(){
 
     $("#addEvent").empty();
@@ -174,14 +218,19 @@ function createEvents(){
     newDiv.addClass("eventItem");
     newDiv.attr("data-id",eventResultList[i].id);
     newDiv.attr("id", i);
-
+   
     newDiv.append("<img src="+eventResultList[i].image+" alt=\"placehold for rating\" class=\"ratedImg\">");
     newDiv.append("<h3 class=\"eventHeader\">"+eventResultList[i].title+"</h3>");
-    newDiv.append("<p class=\"eventDescr\">"+moment(eventResultList[i].starttime).format("LLL")+"</p>");
+    newDiv.append("<p class=\"eventDescr\">"+eventResultList[i].rating+"</p>");
+     
     $("#addEvent").append(newDiv);
 
     }
+
+   
+
  $(".eventItem").on("click",function(){
+    console.log(eval("eventResultList["+ this.id +"].title"));
     deleteMarkers();
     map.setCenter(eval("eventResultList["+ this.id +"].latlng"));
     console.log("hey");
@@ -191,14 +240,38 @@ function createEvents(){
     var marker = new google.maps.Marker({
       position: eval("eventResultList["+ this.id +"].latlng"),
       title: eval("eventResultList["+ this.id +"].title"),
+      icon: testicon,
       map: map
     });
     markers.push(marker);
-    checkForCrime(eval("eventResultList["+ this.id +"].latlng"));
+    placeMarker(eval("eventResultList["+ this.id +"].latlng"),eval("eventResultList["+ this.id +"].rating"));
+    
   })
 
 
-  } //end of populateResults function
+  }
+   function placeMarker(location, rating) {
+      var color;
+      console.log(rating);
+      if (rating === "B"){
+        color = '#fbd05d';
+      }else if (rating === "C"){
+        color = '#f15c32';
+      }else{
+        color = '#89ae4f';
+      }
+      circle = new google.maps.Circle({
+        strokeColor: color,
+        strokeOpacity: 0.3,
+        strokeWeight: 0,
+        fillColor: color,
+        fillOpacity: 0.4,
+        map: map,
+        center: location,
+        radius: 1300
+
+      });
+  }
 
 
 
@@ -206,7 +279,7 @@ function createEvents(){
 
 
 
-  console.log(eventResultList);
+  //console.log(eventResultList);
 }
 function deleteMarkers() {
         try{
@@ -234,7 +307,7 @@ var map;
 var crimeData;
 
 //global variable for circle color;
-var color = '#89ae4f';
+
 
 $.ajax({
     url: "https://data.austintexas.gov/resource/rkrg-9tez.json?$where=longitude > -999",
@@ -250,20 +323,20 @@ $.ajax({
      });
 
   //place a cirle on map with calculated location and color
-  function placeMarker(location, color) {
+  // function placeMarker(location, color) {
     
-      circle = new google.maps.Circle({
-        strokeColor: color,
-        strokeOpacity: 0.3,
-        strokeWeight: 0,
-        fillColor: color,
-        fillOpacity: 0.4,
-        map: map,
-        center: location,
-        radius: 1000
+  //     circle = new google.maps.Circle({
+  //       strokeColor: color,
+  //       strokeOpacity: 0.3,
+  //       strokeWeight: 0,
+  //       fillColor: color,
+  //       fillOpacity: 0.4,
+  //       map: map,
+  //       center: location,
+  //       radius: 1300
 
-      });
-  }
+  //     });
+  // }
 
     //crime variables
     var theft = 0;
@@ -281,7 +354,7 @@ $.ajax({
     var check = false;
 
     //function for counting crime in a specific area
-    function checkForCrime(position){
+    function checkForCrime(position,eventIndex){
       //console.log(position);
       //console.log(position.lat());
 
@@ -496,6 +569,14 @@ $.ajax({
           if ((crimeData[i].latitude <= latD) && (crimeData[i].latitude >= latC) 
             && (crimeData[i].longitude <= lngA) && (crimeData[i].longitude >= lngC)){
             countCrime++;
+            var crimeLatlng = new google.maps.LatLng(crimeData[i].latitude,crimeData[i].longitude);
+            //get crime in area
+            // var marker = new google.maps.Marker({
+            //   position: crimeLatlng,
+            //   title: crimeData[i].crime_type,
+            //   map: map
+            //   });
+            // markers.push(marker);
           }
         }
       }
@@ -516,15 +597,17 @@ $.ajax({
 
       //yellow
       if (countCrime >= 15 && countCrime < 30){
-        color = '#fbd05d';
+        
+        eventResultList[eventIndex].rating = "B";
 
         //red
       }else if(countCrime >= 30){
-        color = '#f15c32';
+        
+        eventResultList[eventIndex].rating = "C";
       }
       
       //call cirlce function
-      placeMarker(position, color);
+     
 
     } 
 
@@ -532,4 +615,3 @@ $.ajax({
 
 
 })
-
