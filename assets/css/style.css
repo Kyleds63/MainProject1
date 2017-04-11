@@ -24,6 +24,7 @@ header{
 	height: 80px;  /* this will effect the flex heigts*/
 	background-color: #054F81;
 	padding: 2%;
+	padding-bottom: 0px;
 }
 
 header > div{
@@ -397,12 +398,17 @@ footer p {
 	#austin{
 		font-size: 20px;
 		/*margin-right: 10px;*/
+		margin-top: 0px;
 		margin-bottom: 13px;
 	}
 	
 	/* KnowGo container*/
 	header > div {
 		margin-top: 1%;
+		display: flex;
+    	flex-direction: column;
+    	justify-content: center;
+    	margin-right: 0px;
 	}
 
 	nav{
@@ -499,6 +505,8 @@ footer p {
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  box-shadow: 3px 3px 9px grey;
+  border: 1px solid rgba(128, 128, 128, 0.63);
 }
 
 .toast .btn, .toast .btn-large, .toast .btn-flat {
