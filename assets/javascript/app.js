@@ -47,7 +47,8 @@ $(document).ready(function(){
     //Constructor creates a new map - only center and zoom are required.
     map = new google.maps.Map(document.getElementById('map'),{
       center: {lat: 30.2229111, lng: -97.7594106},
-      zoom: 12
+      zoom: 12,
+      scrollwheel: false
     });
    }
 
@@ -186,6 +187,7 @@ $(document).ready(function(){
 
       for(i=0;i<eventResultList.length;i++){
 
+
       var newDiv = $("<div>");
       newDiv.addClass("eventItem");
       newDiv.attr("data-id",eventResultList[i].id);
@@ -193,8 +195,13 @@ $(document).ready(function(){
      
       newDiv.append("<img src="+eventResultList[i].image+" alt=\"placehold for rating\" class=\"ratedImg\">");
       newDiv.append("<h3 class=\"eventHeader\">"+eventResultList[i].title+"</h3>");
-      newDiv.append("<p class=\"eventDescr\">"+eventResultList[i].rating+"</p>");
+
+     
       newDiv.append("<p class=\"eventDescr\">"+eventResultList[i].topCrime+"</p>");
+
+      newDiv.append("<p class=\"eventDescr\">"+moment(eventResultList[i].starttime).format("LLL") + "</p>");     
+      newDiv.append("<p class=\"eventDescr\"> Safety Rating: "+eventResultList[i].rating+"</p>");
+
        
       $("#addEvent").append(newDiv);
 
@@ -213,6 +220,7 @@ $(document).ready(function(){
         title: eval("eventResultList["+ this.id +"].title"),
         icon: testicon,
         map: map
+
       });
       markers.push(marker);
       placeMarker(eval("eventResultList["+ this.id +"].latlng"),eval("eventResultList["+ this.id +"].rating"));

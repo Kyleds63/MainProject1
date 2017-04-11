@@ -363,7 +363,7 @@ footer p {
 	#map{
 		display: block;
 		overflow: auto;
-		width: 90%; /*makes map extend 100% */
+		width: 100%; /*makes map extend 100% */
 		margin: auto;
 		height: 400px;
 	} 
@@ -388,6 +388,7 @@ footer p {
 /* ------- medium phone ----------- */
 @media only screen and (max-width: 375px){
 
+
 	h1{
 		margin-left: 2%;
 	}
@@ -395,7 +396,7 @@ footer p {
 	/*h3 in title*/
 	#austin{
 		font-size: 20px;
-		margin-right: 10px;
+		/*margin-right: 10px;*/
 		margin-bottom: 13px;
 	}
 	
@@ -406,7 +407,10 @@ footer p {
 
 	nav{
 		justify-content: center;
+		box-shadow: 0 0 0 0;
+
 	}
+
 
 	#eventArea{
 		flex: initial; /*resets the flex 1 set on desktop*/
@@ -423,7 +427,9 @@ footer p {
 
 	#map {
 		display: none;
+		width:100%;
 	}
+	
 }
 
 
