@@ -184,6 +184,64 @@ $(document).ready(function(){
 
       for(i=0;i<eventResultList.length;i++){
 
+<<<<<<< HEAD
+    var newDiv = $("<div>");
+    newDiv.addClass("eventItem");
+    newDiv.attr("data-id",eventResultList[i].id);
+    newDiv.attr("id", i);
+   
+    newDiv.append("<img src="+eventResultList[i].image+" alt=\"placehold for rating\" class=\"ratedImg\">");
+    newDiv.append("<h3 class=\"eventHeader\">"+eventResultList[i].title+"</h3>");
+    newDiv.append("<p class=\"eventDescr\">"+moment(eventResultList[i].starttime).format("LLL") + "</p>");     
+    newDiv.append("<p class=\"eventDescr\"> Safety Rating: "+eventResultList[i].rating+"</p>");
+    $("#addEvent").append(newDiv);
+
+    }
+
+   
+
+ $(".eventItem").on("click",function(){
+    console.log(eval("eventResultList["+ this.id +"].title"));
+    deleteMarkers();
+    map.setCenter(eval("eventResultList["+ this.id +"].latlng"));
+    console.log("hey");
+    console.log(eval("eventResultList["+ this.id +"]"));
+    //eventResultList[i].latlng;
+
+    var marker = new google.maps.Marker({
+      position: eval("eventResultList["+ this.id +"].latlng"),
+      title: eval("eventResultList["+ this.id +"].title"),
+      icon: testicon,
+      map: map
+    });
+    markers.push(marker);
+    placeMarker(eval("eventResultList["+ this.id +"].latlng"),eval("eventResultList["+ this.id +"].rating"));
+    
+  })
+
+
+  }
+   function placeMarker(location, rating) {
+      var color;
+      console.log(rating);
+      if (rating === "B"){
+        color = '#fbd05d';
+      }else if (rating === "C"){
+        color = '#f15c32';
+      }else{
+        color = '#89ae4f';
+      }
+      circle = new google.maps.Circle({
+        strokeColor: color,
+        strokeOpacity: 0.3,
+        strokeWeight: 0,
+        fillColor: color,
+        fillOpacity: 0.4,
+        map: map,
+        center: location,
+        radius: 1300
+
+=======
       var newDiv = $("<div>");
       newDiv.addClass("eventItem");
       newDiv.attr("data-id",eventResultList[i].id);
@@ -210,6 +268,7 @@ $(document).ready(function(){
         title: eval("eventResultList["+ this.id +"].title"),
         icon: testicon,
         map: map
+>>>>>>> 2194699cf9024cad5f4b951eb31f233c200f0f87
       });
       markers.push(marker);
       placeMarker(eval("eventResultList["+ this.id +"].latlng"),eval("eventResultList["+ this.id +"].rating"));
@@ -491,4 +550,3 @@ $(document).ready(function(){
         }             
       } 
 })
-

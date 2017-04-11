@@ -15,15 +15,20 @@
 
 </head>
 <body>
+  <!-- header row with KnowGO austin and search box -->
 	<header>
-		<h1>Kn<span id="redCircle">o</span>wG<span id="greenCircle">o</span></h1>
+    <div>
+      <h1>Kn<span id="redCircle">o</span>wG<span id="greenCircle">o</span></h1>
+      <h3 id="austin">austin</h3>
+    </div>
+		
 		<input type="text" name="searchBox" placeholder="Search Events" id="navSearchBox">
 
 	</header>
 	<nav>
 		<!-- rating -->
 		<div class="navItem"> <!-- do not confuse this class with the bootstrap nav-item -->
-		<h3 class="searchHeader" id="flip">Rating:</h3> 
+		<h3 class="searchHeader" id="flip">Safety Rating:</h3> 
            	<div class="navPanel" id="ratingPanel">                   
               <select id="ratingSelect" class="ui search dropdown">                  
 	              <label for="A">A
@@ -37,7 +42,8 @@
 	              </label>
 	           </select>
            	</div> 
-        <button id="ratingButton" class="tooltipped" data-position="bottom">?</button> 
+        <button id="ratingButton" class="tooltip" data-position="bottom">?</button>
+        <div id="toast-container"></div>
         </div>
 
         <!-- event category -->
@@ -66,7 +72,7 @@
 			<input class="userDate" type="date" name="endDate" id="endDate" placeholder="end MM/DD/YYYY">
 		</div>
 
-		<input type="submit" value="Submit" id="submit"> <!-- only change events displayed on search, not auto -->
+		<input type="submit" value="Filter" id="submit"> <!-- only change events displayed on search, not auto -->
 	</nav>
   <main>
 	<!-- map area -->
@@ -111,7 +117,8 @@
   <!-- Map-->
   <script  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmH8QsBvYkYA580EnbbXmfi_l4QjR22AA&v=3"></script>
   
-
+  <!-- Moment -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
 </body>
 
 </html>

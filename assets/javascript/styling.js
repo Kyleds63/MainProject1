@@ -1,26 +1,19 @@
 
 
-// jumps user to next date section when using keys to type date. could be annoying??
-$(".userDate").keyup(function () {
-    if ($(this).val().length == 10) {
-      var nextCal = $(this).next('.userDate');
-      if (nextCal.length)
-          $(this).next('.userDate').focus();
-      else
-          $(this).blur();
-    }
+// click function to make the toast alert box appear
+$("#ratingButton").click(function(){
+	//Materialize.toast(message, displayLength, className, completeCallback);
+  	Materialize.toast('Ratings are calculated by the severity and number of crimes committed in one square mile of the event location. Regions outside of Austin and/or regions with out current crime data are labeled as &ldquo;NR&rdquo; for not rated.'); // 4000 is the duration of the toast
 });
 
+// on click function to make the toast disappear when the user clicks the toast. Users can swipe toast in mobile view
+$(document).on("click", "#toast-container .toast", function() {
+    $(this).fadeOut(function(){
+        $(this).remove();
+    });
+});
 
-
-// 
-$("#ratingButton").click(function(){
-	// $("#popupRatingBox").toggleClass("show");
-	
-	//Materialize.toast(message, displayLength, className, completeCallback);
-  	Materialize.toast('Ratings are calculated by the severity and number of crimes committed in one square mile of the event location. Regions outside of Austin and/or with out current crime data are labeled as &ldquo;NR&rdquo; or &ldquo;not rated&rdquo;.', 4000); // 4000 is the duration of the toast
-})
-
+// resize the map based on screen size, fixes potential mobile viewer bugs
 $("document").resize(function(){
 	google.maps.event.trigger(map, "resize");
 });
