@@ -221,8 +221,8 @@ function createEvents(){
    
     newDiv.append("<img src="+eventResultList[i].image+" alt=\"placehold for rating\" class=\"ratedImg\">");
     newDiv.append("<h3 class=\"eventHeader\">"+eventResultList[i].title+"</h3>");
-    newDiv.append("<p class=\"eventDescr\">"+eventResultList[i].rating+"</p>");
-     
+    newDiv.append("<p class=\"eventDescr\">"+moment(eventResultList[i].starttime).format("LLL") + "</p>");     
+    newDiv.append("<p class=\"eventDescr\"> Safety Rating: "+eventResultList[i].rating+"</p>");
     $("#addEvent").append(newDiv);
 
     }

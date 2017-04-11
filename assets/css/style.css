@@ -15,11 +15,19 @@ h1, h2, h3{
 	color: #054F81;
 }
 
+h3{
+	font-size: 20px;
+}
+
 /* --------- header section styling  ------------- */
 header{
 	height: 80px;  /* this will effect the flex heigts*/
 	background-color: #054F81;
 	padding: 2%;
+}
+
+header > div{
+	margin-right: 20px;
 }
 
 h1{
@@ -30,6 +38,11 @@ h1{
 
 }
 
+header > div > h3{
+	color: #FBC957;
+	font-size: 22px;
+}
+
 #navSearchBox{
 	background: white url(../images/search.png) right center no-repeat;
 	width: 250px;
@@ -37,7 +50,7 @@ h1{
 	font-size: 17px;
 	padding-left: 10px;
 	border-radius: 6px;
-	margin-bottom: 10px;
+	margin-bottom: 13px;
 }
 
 #redCircle{
@@ -54,15 +67,17 @@ h1{
 nav{
 	width: 100%;
 	padding-left: 10px;
-	border-top: 2px solid rgba(128, 128, 128, 0.59);
-	border-bottom: 2px solid rgba(128, 128, 128, 0.59);
+	box-shadow: 0 4px 9px -2px #bcbcbc;
+	z-index: 1;
 }
+
 
 /* selecting all dropdowns and conent in navbar */
 .dropdown {
 	display: inline-block;
 	border: 1px solid #054F81;
-	font-size: 13px;
+	height: 30px;
+	font-size: 16px;
 	padding-left: 5px;
 }
 
@@ -71,11 +86,14 @@ nav{
 }
 
 /* selecting the calendar input boxes */
-.navItem > input {
+.userDate{
 	border: 1px solid #054F81;
-	font-size: 13px;
+	font-size: 16px;
 	border-radius: 6px;
 	margin-left: 5px;
+	height: 30px;
+	max-width: 160px;
+	font-family: "Lato", sans-serif;
 } 
 
 #ratingButton{
@@ -102,6 +120,20 @@ nav{
    	left: 20px;
    	max-width: 300px;
    	z-index: 1;
+}
+
+/* submit button in the form*/
+#submit {
+	padding: 5px 10px;
+	margin: 17px 7px 7px 7px;
+	font-size: 16px;
+	background-color: #89A94A;
+	border-radius: 10px;
+	border: none;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+#submit:hover {
+	background-color: #FBC957;
 }
 
 /* --------- main section styling  --------------------------------------------------- */
@@ -135,9 +167,19 @@ aside > h2 {
 }
 
 
+#centerImg{
+	align-self: center; /*just to align the loading svg*/
+}
+
+#addEvent{
+	align-self: center; /*just to align the loading svg*/
+}
+
+
 /*outer most events section container */
 .events{
 	margin-bottom: 15px;
+	padding-right: 10px;
 	overflow: scroll; 
 	overflow-x: hidden;
 }
@@ -148,12 +190,13 @@ aside > h2 {
 	padding: 15px;
 	margin-bottom: 5px;
 	margin-right: 10px;
+	border-radius: 10px;
 }
 
 
 /*image rating for the event*/
 .ratedImg{
-	height: 50px; /* specify height to counter act flex span */
+	height: 65px; /* specify height to counter act flex span */
 	padding-right: 15px; /* prevent event name from bumping up on right */
 }
 
@@ -169,6 +212,8 @@ aside > h2 {
 .eventDescr{ 
 	margin: 0px;
 	margin-top: 0.5em; /*relevant on the tablet & phone sizes*/
+	width: 100%;
+	font-size: 15px;
 }
 
 
@@ -179,18 +224,6 @@ aside > h2 {
 
 .formHeader:nth-child(3){
 	margin-bottom: 0px;
-}
-
-/* submit button in the form*/
-#submit {
-	padding: 5px 10px;
-	margin: 17px 7px 7px 7px;
-	font-size: 14px;
-	background-color: #89A94A;
-	border-radius: 10px;
-}
-#submit:hover {
-	background-color: #FBC957;
 }
 
 
@@ -222,6 +255,11 @@ header {
 	display: flex;
 	flex: 0 0 96%; /* why does 100 cause horiz scroll? */
 	justify-content: space-between;
+}
+
+header > div {
+	display: flex;
+	align-items: baseline;
 }
 
 
@@ -268,12 +306,17 @@ display: flex;
 	display: flex;
 	flex: 1;
 	flex-direction: column;
+	align-items: center;
+}
+
+aside > h2{
+	align-self: flex-start;
+	width: 90%;
 }
 
 .eventItem{
 	display: flex;
 	flex-wrap: wrap;
-	align-content: center;
 	align-items: baseline;
 }
 
@@ -298,8 +341,13 @@ footer p {
 
 /* ------------------------ Media Queries-------------------------------------------------------------------------- */
 
+@media only screen and (max-width: 866px){
+	#map{
+		width: 66%;
+	}
+}
 
-/* ----- table size ---------*/
+/* ----- tablet size ---------*/
 @media only screen and (max-width: 768px){
 	
 	header{
@@ -325,8 +373,14 @@ footer p {
 		max-height: 470px; /*keeps user scroll active with lots of event content*/
 	}
 
+	aside > h2{
+		width: 95%;
+	}
+
 	#eventArea{
 		flex: initial; /*resets the flex 1 set on desktop*/
+		box-shadow: 0 -2px 9px -1px #bcbcbc;
+		z-index: 1;
 	}
 }
 
@@ -334,8 +388,33 @@ footer p {
 /* ------- medium phone ----------- */
 @media only screen and (max-width: 375px){
 
+	h1{
+		margin-left: 2%;
+	}
+	
+	/*h3 in title*/
+	#austin{
+		font-size: 20px;
+		margin-right: 10px;
+		margin-bottom: 13px;
+	}
+	
+	/* KnowGo container*/
+	header > div {
+		margin-top: 1%;
+	}
+
 	nav{
-		justify-content: flex-start;
+		justify-content: center;
+	}
+
+	#eventArea{
+		flex: initial; /*resets the flex 1 set on desktop*/
+		box-shadow: none;
+	}
+
+	aside > h2{
+		width: 95%;
 	}
 
 	footer{
