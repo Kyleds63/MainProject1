@@ -105,6 +105,7 @@ nav{
 	color: #054F81;
 }
 
+
 #ratingButton:hover{
 	padding: 5px 10px;
 	background-color: rgba(251, 201, 87, 0.3);
@@ -428,7 +429,11 @@ footer p {
 	}
 
 	footer{
-		padding-top: 3%;
+		padding: 3% 1% 0 1%;
+	}
+
+	footer > p {
+		padding: 0px 3px;
 	}
 
 	#map {
