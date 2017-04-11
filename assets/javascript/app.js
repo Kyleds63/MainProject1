@@ -25,7 +25,7 @@ $(document).ready(function(){
   $("#addEvent").html("<img src = 'assets/images/gps.svg'\"></img>");
 
   //event constructor
-  function event(num,id,latlng,image,starttime,title,venuename,venueaddress,url,venueurl,description,cityname,rating){
+  function event(num,id,latlng,image,starttime,title,venuename,venueaddress,url,venueurl,description,cityname,rating,topCrime){
     this.num = num;
     this.id = id;
     this.latlng = latlng;
@@ -39,6 +39,7 @@ $(document).ready(function(){
     this.description = description;
     this.cityname = cityname;
     this.rating = rating;
+    this.topCrime = topCrime;
   }
 
   //init map function
@@ -144,7 +145,8 @@ $(document).ready(function(){
             findEvents.events.event[j].venue_url,
             findEvents.events.event[j].description,
             findEvents.events.event[j].city_name,
-            "A");
+            "A",
+            "filler");
  
           eventResultList.push(obj);
           checkForCrime(eval("eventResultList["+ j +"].latlng"),j);
@@ -184,64 +186,6 @@ $(document).ready(function(){
 
       for(i=0;i<eventResultList.length;i++){
 
-<<<<<<< HEAD
-    var newDiv = $("<div>");
-    newDiv.addClass("eventItem");
-    newDiv.attr("data-id",eventResultList[i].id);
-    newDiv.attr("id", i);
-   
-    newDiv.append("<img src="+eventResultList[i].image+" alt=\"placehold for rating\" class=\"ratedImg\">");
-    newDiv.append("<h3 class=\"eventHeader\">"+eventResultList[i].title+"</h3>");
-    newDiv.append("<p class=\"eventDescr\">"+moment(eventResultList[i].starttime).format("LLL") + "</p>");     
-    newDiv.append("<p class=\"eventDescr\"> Safety Rating: "+eventResultList[i].rating+"</p>");
-    $("#addEvent").append(newDiv);
-
-    }
-
-   
-
- $(".eventItem").on("click",function(){
-    console.log(eval("eventResultList["+ this.id +"].title"));
-    deleteMarkers();
-    map.setCenter(eval("eventResultList["+ this.id +"].latlng"));
-    console.log("hey");
-    console.log(eval("eventResultList["+ this.id +"]"));
-    //eventResultList[i].latlng;
-
-    var marker = new google.maps.Marker({
-      position: eval("eventResultList["+ this.id +"].latlng"),
-      title: eval("eventResultList["+ this.id +"].title"),
-      icon: testicon,
-      map: map
-    });
-    markers.push(marker);
-    placeMarker(eval("eventResultList["+ this.id +"].latlng"),eval("eventResultList["+ this.id +"].rating"));
-    
-  })
-
-
-  }
-   function placeMarker(location, rating) {
-      var color;
-      console.log(rating);
-      if (rating === "B"){
-        color = '#fbd05d';
-      }else if (rating === "C"){
-        color = '#f15c32';
-      }else{
-        color = '#89ae4f';
-      }
-      circle = new google.maps.Circle({
-        strokeColor: color,
-        strokeOpacity: 0.3,
-        strokeWeight: 0,
-        fillColor: color,
-        fillOpacity: 0.4,
-        map: map,
-        center: location,
-        radius: 1300
-
-=======
       var newDiv = $("<div>");
       newDiv.addClass("eventItem");
       newDiv.attr("data-id",eventResultList[i].id);
@@ -250,6 +194,7 @@ $(document).ready(function(){
       newDiv.append("<img src="+eventResultList[i].image+" alt=\"placehold for rating\" class=\"ratedImg\">");
       newDiv.append("<h3 class=\"eventHeader\">"+eventResultList[i].title+"</h3>");
       newDiv.append("<p class=\"eventDescr\">"+eventResultList[i].rating+"</p>");
+      newDiv.append("<p class=\"eventDescr\">"+eventResultList[i].topCrime+"</p>");
        
       $("#addEvent").append(newDiv);
 
@@ -268,7 +213,6 @@ $(document).ready(function(){
         title: eval("eventResultList["+ this.id +"].title"),
         icon: testicon,
         map: map
->>>>>>> 2194699cf9024cad5f4b951eb31f233c200f0f87
       });
       markers.push(marker);
       placeMarker(eval("eventResultList["+ this.id +"].latlng"),eval("eventResultList["+ this.id +"].rating"));
@@ -351,7 +295,7 @@ $(document).ready(function(){
       var fraud = 0;
       var autotheft = 0;
       var agg = 0;
-      var rape = 0;
+      
 
       //check for specific crimes
       var check = false;
@@ -363,7 +307,19 @@ $(document).ready(function(){
 
         
         //number of crime instances in an area
+        var rank = 0;
         var countCrime = 0;
+        var totalRank = 0;
+        
+        var crimeTypes = {
+          theft: 0,
+          assault: 0,
+          harassment: 0,
+          tresspass: 0,
+          autotheft: 0,
+          poss: 0,
+          rape: 0
+        }
 
         //set lat and lng of point
         var latIn = position.lat();
@@ -392,130 +348,193 @@ $(document).ready(function(){
           //check data for crime types
           switch(crimeData[i].crime_type){
           case "THEFT":
+            rank = 3;
+            type = "theft";
             theft++;
             check = true;
             break;
           case "BURGLARY OF VEHICLE":
+            rank = 4;
+            type = "theft";
             bov++;
             check = true;
             break;
           case "INJURY TO ELDERLY PERSON":
+            rank = 2;
+            type = "assault";
             agg++;
             check = true;
             break;
           case "HARASSMENT":
+            rank = 3;
+            type = "harassment";
             harassment++;
             check = true;
             break;
           case "CRIMINAL TRESPASS NOTICE":
+            rank = 2;
+            type = "tresspass";
             ctn++;
             check = true;
             break;
           case "AUTO THEFT":
+            rank = 4;
+            type = "autotheft";
             autotheft++;
             check = true;
             break; 
           case "AGG ASSAULT":
+            rank = 5;
+            type = "assault";
             agg++;
             check = true;
             break;
           case "ASSAULT  CONTACT-SEXUAL NATURE":
+            rank = 5;
+            type = "assault";
             agg++;
             check = true;
             break;
           case "POSS OF DRUG PARAPHERNALIA":
+            rank = 2;
+            type = "poss";
             poss++;
             check = true;
             break;
           case "PUBLIC INTOXICATION":
+            rank = 1;
             poss++;
             check = true;
             break;
           case "AGG ASLT STRANGLE/SUFFOCATE":
+            rank = 5;
+            type = "poss";
             agg++;
             check = true;
             break;
           case "THEFT OF BICYCLE":
+            rank = 2;
+            type = "theft";
             theft++;
             check = true;
             break; 
           case "POSS MARIJUANA":
+            rank = 1;
+            type = "poss";
             poss++;
             check = true;
             break; 
           case "DEBIT CARD ABUSE":
+            rank = 3;
+            type = "theft";
             theft++;
             check = true;
             break;
           case "OUT OF CITY AUTO THEFT":
+            rank = 4;
+            type = "auto-theft";
             theft++;
             check = true;
             break;
           case "POSS SYNTHETIC MARIJUANA":
+            rank = 1;
+            type = "poss";
             poss++;
             check = true;
             break;
           case "ASSAULT BY CONTACT":
+            rank = 4;
+            type = "assault";
             agg++;
             check = true;
             break;
           case "ASSAULT W/INJURY-FAM/DATE VIOL":
+            rank = 4;
+            type = "assault";
             agg++;
             check = true;
             break;
           case "ASSAULT WITH INJURY":
+            rank = 4;
+            type = "assault";
             agg++;
             check = true;
             break;
           case "FRAUD - OTHER":
+            rank = 2;
+            type = "theft";
             theft++;
             check = true;
             break;
           case "CRIMINAL MISCHIEF":
+            rank = 2;
+            type = "tresspass";
             harassment++;
             check = true;
             break;
           case "DAMAGE CITY PROP":
+            rank = 2;
+            type = "tresspass";
             harassment++;
             check = true;
             break;
           case "POSS CONTROLLED SUB/NARCOTIC":
+            rank = 3;
+            type = "poss";
             poss++;
             check = true;
             break;
           case "TERRORISTIC THREAT":
+            rank = 5;
+            type = "assault";
             agg++;
             check = true;
             break; 
           case "RAPE":
+            rank = 5;
+            type = "rape";
             rape++;
             check = true;
             break; 
           case "THEFT FROM PERSON":
+            rank = 5;
+            type = "theft";
             theft++;
             check = true;
             break; 
           case "ASSAULT BY THREAT":
+            rank = 2;
+            type = "assault";
             agg++;
             check = true;
             break; 
           case "ROBBERY BY ASSAULT":
+            rank = 5;
+            type = "assault";
             agg++;
             check = true;
             break; 
           case "POSS DANG DRUG":
+            rank = 3;
+            type = "poss";
             poss++;
             check = true;
             break; 
           case "IDENTITY THEFT":
+            rank = 4;
+            type = "theft";
             theft++;
             check = true;
             break;
           case "DEADLY CONDUCT":
+            rank = 5;
+            type = "assault";
             agg++;
             check = true;
             break;
           case "FORCED SODOMY":
+            rank = 5;
+            type = "rape";
             rape++;
             check = true;
             break;                                 
@@ -528,23 +547,99 @@ $(document).ready(function(){
             //checks if point is inside square
             if ((crimeData[i].latitude <= latD) && (crimeData[i].latitude >= latC) 
               && (crimeData[i].longitude <= lngA) && (crimeData[i].longitude >= lngC)){
+              totalRank = totalRank + rank;
               countCrime++;
+
+               // var crimeTypes{
+               //    theft: 0;
+               //    assault: 0;
+               //    harassment: 0;
+               //    tresspass: 0;
+               //    autotheft: 0;
+               //    poss: 0;
+               //  }
+
+               if(type === "theft"){
+                crimeTypes.theft++;
+               }else if(type === "assault"){
+                crimeTypes.assault++;
+               }else if(type === "harassment"){
+                crimeTypes.harassment++;
+               }else if(type === "tresspass"){
+                crimeTypes.tresspass++;
+               }else if(type === "autotheft"){
+                crimeTypes.autotheft++;
+               }else if(type === "poss"){
+                crimeTypes.poss++;
+               }else if(type === "rape"){
+                crimeTypes.rape++;
+               }
+
+
+
               var crimeLatlng = new google.maps.LatLng(crimeData[i].latitude,crimeData[i].longitude);
               
             }
+
           }
+          
         }
+        var mostCrime = "No Data Available";
+        var number = 0;
+        
+          //console.log(Object.keys(crimeTypes)[i]);
+          if(crimeTypes.theft > number){
+            number = crimeTypes.theft;
+            mostCrime = "Theft";
+          }
+          if(crimeTypes.assault > number){
+            number = crimeTypes.assault;
+            mostCrime = "Assault";
+          }
+          if(crimeTypes.harassment > number){
+            number = crimeTypes.harassment;
+            mostCrime = "Harassment";
+          }
+          if(crimeTypes.tresspass > number){
+            number = crimeTypes.tresspass;
+            mostCrime = "Tresspassing";
+          }
+          if(crimeTypes.autotheft > number){
+            number = crimeTypes.autotheft;
+            mostCrime = "Auto-Theft";
+          }
+          if(crimeTypes.poss > number){
+            number = crimeTypes.poss;
+            mostCrime = "Possesion of Drugs";
+          }
+          if(crimeTypes.rape > number){
+            number = crimeTypes.rape;
+            mostCrime = "Rape";
+          }
+          eventResultList[eventIndex].topCrime = mostCrime;
+        
 
-        //default color for circle
-        color = '#89ae4f';
 
-        //yellow
-        if (countCrime >= 15 && countCrime < 30){
+
+        
+
+        // var theft = 0;
+        // var rape = 0;
+        // var bov = 0;
+        // var poss = 0;
+        // var harassment = 0;
+        // var ctn = 0;
+        // var fraud = 0;
+        // var autotheft = 0;
+        // var agg = 0;
+
+        //B
+        if (totalRank >= 400 && totalRank < 700){
           
           eventResultList[eventIndex].rating = "B";
 
-          //red
-        }else if(countCrime >= 30){
+          //C
+        }else if(totalRank >= 700){
           
           eventResultList[eventIndex].rating = "C";
         }             
