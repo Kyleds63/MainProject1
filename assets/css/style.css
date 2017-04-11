@@ -181,7 +181,7 @@ aside > h2 {
 .events{
 	margin-bottom: 15px;
 	padding-right: 10px;
-	overflow: scroll; 
+	/*overflow: scroll; */
 	overflow-x: hidden;
 }
 
