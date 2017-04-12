@@ -55,15 +55,13 @@ $(document).ready(function(){
    //creates default events onload
   defaultEvents();
   function defaultEvents(){
-    query = "music"; //type
+    query = "all"; //type
     search = $("#navSearchBox").val().trim(); //search input
     ratingIn = "C";
-    var startDate = $('#startDate').val(); //set dates from values in the calader input
-    var endDate = $('#endDate').val(); //set dates from values in the calader input
 
     //eventful processes dates as YYYYMMDD00. Adding 00 to the end of the numbers.
-    var finalStart = startDate + "00";
-    var finalEnd = endDate + "00";
+    var finalStart = moment().format('YYYYMMDD')+ "00";
+    var finalEnd = moment().format('YYYYMMDD') + "00";
 
     //removing hyphens in the numbers generated from the calander so eventful can read them.
     splitStart = finalStart.split('-').join('');
@@ -195,16 +193,17 @@ $(document).ready(function(){
      
       newDiv.append("<img src="+eventResultList[i].image+" alt=\"placehold for rating\" class=\"ratedImg\">");
       newDiv.append("<h3 class=\"eventHeader\">"+eventResultList[i].title+"</h3>");
-
-     
-      newDiv.append("<p class=\"eventDescr\">"+eventResultList[i].topCrime+"</p>");
-
       newDiv.append("<p class=\"eventDescr\">"+moment(eventResultList[i].starttime).format("LLL") + "</p>");     
       newDiv.append("<p class=\"eventDescr\"> Safety Rating: "+eventResultList[i].rating+"</p>");
 
-       
-      $("#addEvent").append(newDiv);
+      if (eventResultList[i].rating === "A"){
+        newDiv.append("<p class=\"eventDescr\"> This area is generally safe </p>");
+      }else{
+        newDiv.append("<p class=\"eventDescr\"> Most reported crime: "+eventResultList[i].topCrime+"</p>");
+      } 
+      newDiv.append("<a href="+ eventResultList[i].url + " class=\"eventDescr\" target='_blank' >Get Ticket</a>");
 
+      $("#addEvent").append(newDiv);
       }   
 
    $(".eventItem").on("click",function(){
@@ -218,7 +217,6 @@ $(document).ready(function(){
       var marker = new google.maps.Marker({
         position: eval("eventResultList["+ this.id +"].latlng"),
         title: eval("eventResultList["+ this.id +"].title"),
-        icon: testicon,
         map: map
 
       });
