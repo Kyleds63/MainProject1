@@ -392,10 +392,6 @@ footer p {
 		max-height: 470px; /*keeps user scroll active with lots of event content*/
 	}
 
-	aside > h2{
-		width: 95%;
-	}
-
 	#eventArea{
 		flex: initial; /*resets the flex 1 set on desktop*/
 		box-shadow: 0 -2px 9px -1px #bcbcbc;
