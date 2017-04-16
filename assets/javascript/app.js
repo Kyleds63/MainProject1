@@ -114,7 +114,7 @@ $(document).ready(function(){
 
     // This function does the searching
     EVDB.API.call("/events/search", Events, function(findEvents) {
-      console.log(findEvents);
+      // console.log(findEvents);
        var eventImage;
        
          //Display the items on the page for testing purposes
@@ -176,7 +176,7 @@ $(document).ready(function(){
       if(findEvents.events != null){
       populateResuts();
     }
-      console.log(eventResultList);    
+      // console.log(eventResultList);    
     });
 
     function populateResuts(){
