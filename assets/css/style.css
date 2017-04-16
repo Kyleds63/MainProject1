@@ -4,14 +4,19 @@ body{
 	font-family: 'Lato', sans-serif;
 	font-size: 14px;
 	margin: 0px;
-	max-width: 1300px;
+	max-width: 100%;
 	height: 100vh;
 
 }
 
-h1, h2, h3{
+h1{
 	font-family: 'Paytone One', sans-serif;
 	letter-spacing: 1px;
+	color: #054F81;
+}
+
+h2, h3{
+	font-family: 'Montserrat', sans-serif;
 	color: #054F81;
 }
 
@@ -42,10 +47,11 @@ h1{
 header > div > h3{
 	color: #FBC957;
 	font-size: 22px;
+	font-family: "Paytone One", sans-serif;
+	letter-spacing: 1px;
 }
 
 #navSearchBox{
-	background: white url(../images/search.png) right center no-repeat;
 	width: 250px;
 	height: 30px;
 	font-size: 17px;
@@ -70,6 +76,7 @@ nav{
 	padding-left: 10px;
 	box-shadow: 0 4px 9px -2px #bcbcbc;
 	z-index: 1;
+	background-color: rgb(236, 235, 233);
 }
 
 
@@ -132,17 +139,19 @@ nav{
 	background-color: #89A94A;
 	border-radius: 10px;
 	border: none;
-	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+	box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2);
+	color: #fff
 }
 #submit:hover {
 	background-color: #FBC957;
+	padding: 7px 11px;
 }
 
 /* --------- main section styling  --------------------------------------------------- */
 
 main{
 	overflow: hidden;
-	height: 100%;
+	height: 76%;
 	width: 100%;
 	background-color: #FBC957;
 }
@@ -157,15 +166,19 @@ main{
 /* --------- right section styling  ------------- */
 
 aside {
-	background-color: #91CED2;
-	padding: 15px;
+	background-color: #fff;
+	padding: 10px 0px;
 }
 
 
 /* Main 'events' header with bottom fader border*/
 aside > h2 {
-	box-shadow: 0 4px 3px -3px #45A4AA;  /*to create bottom line, set the 4th value as a negative of the third*/
+	box-shadow: 0 5px 4px -3px #bcbcbc;  /*to create bottom line, set the 4th value as a negative of the third*/
 	padding-left: 21px; /*inline with the events thumbnails*/
+	padding-bottom: 5px;
+	margin-bottom: 4px;
+	font-size: 25px;
+    letter-spacing: 1px;
 }
 
 
@@ -181,25 +194,28 @@ aside > h2 {
 /*outer most events section container */
 .events{
 	margin-bottom: 15px;
-	padding-right: 10px;
-	/*overflow: scroll; */
+	padding-right: 20px;
+	padding-left: 10px;
 	overflow-x: hidden;
 }
 
 /* individual event containers */
 .eventItem{
-	border: solid #fff 2px;
 	padding: 15px;
-	margin-bottom: 5px;
-	margin-right: 10px;
+	margin: 20px 7px;
 	border-radius: 10px;
+    box-shadow: 0px 0px 5px 0px #bcbcbc;
+    margin: 20px 7px;
+    background-color: rgb(236, 235, 233);
 }
 
 
 /*image rating for the event*/
 .ratedImg{
-	height: 65px; /* specify height to counter act flex span */
-	padding-right: 15px; /* prevent event name from bumping up on right */
+	height: 100px; /* specify height to counter act flex span */
+	margin-right: 15px; /* prevent event name from bumping up on right */
+	border-radius: 10px;
+	border: 1px solid #bcbcbc;
 }
 
 
@@ -313,7 +329,7 @@ display: flex;
 
 aside > h2{
 	align-self: flex-start;
-	width: 90%;
+	width: 100%;
 }
 
 .eventItem{
@@ -332,6 +348,7 @@ footer {
 
 footer p {
 	margin: 0px;
+	color: #fff;
 }
 
 /* ------------------------ END ------------------------------------------------------------------------------------ */
@@ -355,7 +372,7 @@ footer p {
 	header{
 		height: initial;
 		flex-wrap: wrap;
-		justify-content: center;
+		justify-content: space-around;
 	}
 
 	main{
@@ -373,10 +390,6 @@ footer p {
 	.events{
 		/*overflow: initial;*/ /*resets the overflow scroll from desktop*/
 		max-height: 470px; /*keeps user scroll active with lots of event content*/
-	}
-
-	aside > h2{
-		width: 95%;
 	}
 
 	#eventArea{
